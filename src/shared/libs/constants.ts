@@ -14,7 +14,7 @@ export const PROTECTED_ROUTES = ['/admin'];
 export const PUBLIC_ONLY_ROUTES = ['/login'];
 
 /** Default redirect after successful login */
-export const DEFAULT_AUTH_REDIRECT = '/admin/dashboard';
+export const DEFAULT_AUTH_REDIRECT = '/admin';
 
 /** Default redirect when unauthenticated */
 export const DEFAULT_LOGIN_REDIRECT = '/login';

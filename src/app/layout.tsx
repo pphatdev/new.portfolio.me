@@ -1,8 +1,9 @@
+import "../shared/styles/globals.css"
 import { ThemeProvider } from 'next-themes';
 import { aladin, kantumruyPro, poppins, srisakdi, openSans } from "@/shared/libs/fonts";
 import { cn } from "@/shared/libs/utils";
-import ProgressBarProvider from '@/shared/components/extension/progress-bar-provider';
-import DefaultHead from '@/shared/components/seo/head';
+import ProgressBarProvider from '@/shared/extension/progress-bar-provider';
+import DefaultHead from '@/shared/seo/head';
 
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
