@@ -15,13 +15,13 @@ const matchesRoute = (pathname: string, routes: string[]): boolean =>
     routes.some((route) => pathname === route || pathname.startsWith(`${route}/`));
 
 /**
- * Auth middleware:
+ * Auth proxy handler:
  * - Redirects unauthenticated users away from protected routes.
  * - Redirects authenticated users away from public-only routes (e.g. /login).
  *
  * Returns `null` to signal "no redirect needed" (continue chain).
  */
-export const authMiddleware = (request: NextRequest): NextResponse | null => {
+export const authProxy = (request: NextRequest): NextResponse | null => {
     const { pathname } = request.nextUrl;
     const token = request.cookies.get(AUTH_TOKEN_KEY)?.value;
     const isAuthenticated = Boolean(token);
