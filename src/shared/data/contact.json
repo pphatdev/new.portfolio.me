@@ -1,0 +1,32 @@
+[
+    {
+        "title": "GitHub",
+        "handle": "pphatdev",
+        "icon": "<GithubIcon />",
+        "href": "https://github.com/pphatdev"
+    },
+    {
+        "title": "LinkedIn",
+        "handle": "pphatdev",
+        "icon": "<LinkedinIcon />",
+        "href": "https://linkedin.com/in/pphatdev"
+    },
+    {
+        "title": "Facebook",
+        "handle": "pphat.me",
+        "icon": "<FacebookIcon />",
+        "href": "https://fb.me/pphat.me"
+    },
+    {
+        "title": "X",
+        "handle": "pphatdev",
+        "icon": "<XIcon />",
+        "href": "https://x.com/pphatdev"
+    },
+    {
+        "title": "Email",
+        "handle": "info.sophat",
+        "icon": "<EmailIcon />",
+        "href": "mailto:info.sophat@gmail.com"
+    }
+]

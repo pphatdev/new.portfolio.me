@@ -1,0 +1,78 @@
+{
+    "en_US": [
+        {
+            "question": "Who is [PERSON_NAME]?",
+            "answer": "[PERSON_NAME] also known as [PERSON_ALTERNATE_NAME] or [PERSON_RELEGIEN_NAME] (if you can read Khmer: [PERSON_KHMER_NAME]) is a [PERSON_JOB_TITLE] and Freelance UI/UX Designer based in [ADDRESS_LOCALITY], Cambodia. He is the creator of pphat.me and specializes in building modern, performant web applications with a focus on user experience."
+        },
+        {
+            "question": "What does [PERSON_NAME] do professionally?",
+            "answer": "[PERSON_NAME] works as a [PERSON_JOB_TITLE] at [COMPANY_NAME] and operates as a Freelance UI/UX Designer. He builds responsive, accessible web interfaces and designs intuitive digital experiences for clients, combining technical expertise with a strong design background."
+        },
+        {
+            "question": "What technologies does [PERSON_NAME] specialize in?",
+            "answer": "[PERSON_NAME] specializes in React, Next.js, TypeScript, and Tailwind CSS on the front-end. He also works with Node.js, Express, PostgreSQL, and MongoDB on the back-end. For design he uses Figma and the Adobe Creative Suite, and he deploys projects on Netlify and Vercel."
+        },
+        {
+            "question": "Where is [PERSON_NAME] based?",
+            "answer": "[PERSON_NAME] is based in [ADDRESS_LOCALITY], [ADDRESS_COUNTRY]. He works both on-site at [COMPANY_NAME] and remotely as a freelancer for clients around the world."
+        },
+        {
+            "question": "How many years of experience does [PERSON_NAME] have?",
+            "answer": "[PERSON_NAME] started his career as a Front-end Developer in 2021, giving him 5+ years of professional experience in web development and UI/UX design. He has worked on a wide range of projects from productivity tools to creative web experiments."
+        },
+        {
+            "question": "Where did [PERSON_NAME] study?",
+            "answer": "[PERSON_NAME] studied at [UNIVERSITY_NAME]. His academic background combined with self-driven learning and real-world project experience has shaped him into a well-rounded developer and designer."
+        },
+        {
+            "question": "What is PPhat.me?",
+            "answer": "PPhat.me is the personal portfolio website of [PERSON_NAME] ([PERSON_ALTERNATE_NAME]). It showcases his projects, skills, blog posts, and career journey as a [PERSON_JOB_TITLE] and UI/UX Designer. The site is built with Next.js and deployed on Netlify."
+        },
+        {
+            "question": "How can I contact [PERSON_NAME]?",
+            "answer": "You can contact [PERSON_NAME] via email at [CONTACT_EMAIL], connect with him on LinkedIn at <a href='[LINKEDIN_URL]' target='_blank' className='text-primary font-bold'>LinkedIn</a>, or explore his open-source work on GitHub at <a href='[GITHUB_URL]' target='_blank' className='text-primary font-bold'>GitHub</a>. You can also reach out directly through the <a href='[NEXT_PUBLIC_APP_URL]/contact' target='_blank' className='text-primary font-bold'>Contact</a> page."
+        },
+        {
+            "question": "What is the best way to collaborate with [PERSON_NAME] on a project?",
+            "answer": "The best way to collaborate with [PERSON_NAME] on a project is to reach out through his professional email at [CONTACT_EMAIL] or send him a message through his LinkedIn profile <a href='[LINKEDIN_URL]' target='_blank' className='text-primary font-bold'>LinkedIn</a>. He also welcomes contributions to his open-source projects on GitHub under the <a href='[GITHUB_URL]' target='_blank' className='text-primary font-bold'>GitHub</a>."
+        }
+    ],
+    "km_KH": [
+        {
+            "question": "តើ [PERSON_NAME] គឺជាអ្នកណា?",
+            "answer": "[PERSON_NAME] ដែលត្រូវបានស្គាល់ថា [PERSON_ALTERNATE_NAME] ឬ [PERSON_RELEGIEN_NAME] (ប្រសិនបើអ្នកអាចអានខ្មែរបាន៖ [PERSON_KHMER_NAME]) គឺជា [PERSON_JOB_TITLE] និង Freelance UI/UX Designer ដែលមានមូលដ្ឋាននៅ [ADDRESS_LOCALITY], ប្រទេសកម្ពុជា។ គាត់គឺជាអ្នកបង្កើត pphat.me ហើយមានជំនាញក្នុងការបង្កើតកម្មវិធីគេហទំព័រទំនើប ប្រកបដោយប្រសិទ្ធភាពខ្ពស់ ដោយផ្តោតលើបទពិសោធន៍អ្នកប្រើប្រាស់។"
+        },
+        {
+            "question": "តើ [PERSON_NAME] ធ្វើការងារអ្វីខ្លះ?",
+            "answer": "[PERSON_NAME] ធ្វើការជា [PERSON_JOB_TITLE] នៅ [COMPANY_NAME] និងជា Freelance UI/UX Designer។ គាត់បង្កើតកម្មវិធីគេហទំព័រដែលអាចកែសម្រួលបាន អាចចូលប្រើបាន និងរចនាបទពិសោធន៍ឌីជីថលប្រកបដោយវិចារណญาณសម្រាប់អតិថិជន ដោយរួមបញ្ចូលជំនាញបច្ចេកទេស និងបទពិសោធន៍រចនាដ៏រឹងមាំ។"
+        },
+        {
+            "question": "តើ [PERSON_NAME] មានបទពិសោធន៍ធ្វើការប៉ុន្មានឆ្នាំ?",
+            "answer": "[PERSON_NAME] បានចាប់ផ្តើមអាជីពរបស់គាត់ជា Front-end Developer នៅឆ្នាំ 2021 ដែលមានបទពិសោធន៍វិជ្ជាជីវៈជាង 5 ឆ្នាំក្នុងការអភិវឌ្ឍន៍គេហទំព័រ និងការរចនា UI/UX។"
+        },
+        {
+            "question": "តើ [PERSON_NAME] បានសិក្សានៅណា?",
+            "answer": "[PERSON_NAME] បានសិក្សានៅ [UNIVERSITY_NAME]។ បទពិសោធន៍សិក្សារួមផ្សំជាមួយនឹងការរៀនដោយខ្លួនឯង និងបទពិសោធន៍គម្រោងជាក់ស្តែងបានជួយគាត់ក្លាយជាអ្នកអភិវឌ្ឍន៍ និងអ្នករចនាដ៏មានសមត្ថភាព។"
+        },
+        {
+            "question": "តើ PPhat.me ជាអ្វី?",
+            "answer": "PPhat.me គឺជាគេហទំព័រផលប័ត្រផ្ទាល់ខ្លួនរបស់ [PERSON_NAME] ([PERSON_ALTERNATE_NAME])។ វាបង្ហាញពីគម្រោង ជំនាញ ប្លុក និងការរីកចម្រើនក្នុងអាជីពរបស់គាត់ក្នុងនាមជា [PERSON_JOB_TITLE] និង UI/UX Designer។ គេហទំព័រនេះត្រូវបានបង្កើតឡើងដោយ Next.js និងដំឡើងនៅលើ Netlify។"
+        },
+        {
+            "question": "តើខ្ញុំអាចទាក់ទង [PERSON_NAME] បានដោយរបៀបណា?",
+            "answer": "អ្នកអាចទាក់ទង [PERSON_NAME] តាមរយៈអ៊ីមែលវិជ្ជាជីវៈ [CONTACT_EMAIL] ឬផ្ញើសារតាមរយៈប្រវត្តិរូប LinkedIn របស់គាត់ <a href='[LINKEDIN_URL]' target='_blank' className='text-primary font-bold'>LinkedIn</a>។ អ្នកក៏អាចស្វែងយល់ពីការងារប្រភពបើកចំហរបស់គាត់នៅលើ GitHub ក្រោម <a href='[GITHUB_URL]' target='_blank' className='text-primary font-bold'>GitHub</a> ។ អ្នកក៏អាចទំនាក់ទំនងដោយផ្ទាល់តាមរយៈទំព័រ <a href='[NEXT_PUBLIC_APP_URL]/contact' target='_blank' className='text-primary font-bold'>Contact</a>។"
+        },
+        {
+            "question": "តើវិធីល្អបំផុតក្នុងការសហការជាមួយ [PERSON_NAME] លើគម្រោងគឺជាអ្វី?",
+            "answer": "វិធីល្អបំផុតក្នុងការសហការជាមួយ [PERSON_NAME] លើគម្រោងគឺទាក់ទងគាត់តាមរយៈអ៊ីមែលវិជ្ជាជីវៈ [CONTACT_EMAIL] ឬផ្ញើសារតាមរយៈប្រវត្តិរូប LinkedIn របស់គាត់ <a href='[LINKEDIN_URL]' target='_blank' className='text-primary font-bold'>LinkedIn</a>។ គាត់ក៏ស្វាគមន៍ផងដែរចំពោះការរួមចំណែកដល់គម្រោងប្រភពបើកចំហរបស់គាត់នៅលើ GitHub ក្រោម <a href='[GITHUB_URL]' target='_blank' className='text-primary font-bold'>GitHub</a> ។"
+        },
+        {
+            "question": "តើអ្នកអាចជួយខ្ញុំរៀបចំកម្មវិធីគេហទំព័រ ឬកម្មវិធីសម្រាប់អាជីវកម្មរបស់ខ្ញុំបានទេ?",
+            "answer": "បាទ! [PERSON_NAME] ធ្វើការជា Freelance UI/UX Designer ហើយតែងតែស្វែងរកគម្រោងថ្មីៗ។ គាត់អាចជួយអ្នករៀបចំកម្មវិធីគេហទំព័រ ឬកម្មវិធីប្រកបដោយវិជ្ជាជីវៈសម្រាប់អាជីវកម្មរបស់អ្នក ដោយផ្តោតលើការរចនាប្រកបដោយវិចារណญาណ ប្រសិទ្ធភាពខ្ពស់ និងបទពិសោធន៍អ្នកប្រើប្រាស់។"
+        },
+        {
+            "question": "តើខ្ញុំគួរទាក់ទងអ្នកណាសម្រាប់កិច្ចសហការ?",
+            "answer": "សម្រាប់កិច្ចសហការ អ្នកអាចទាក់ទង [PERSON_NAME] ដោយផ្ទាល់តាមរយៈអ៊ីមែលវិជ្ជាជីវៈ [CONTACT_EMAIL] ឬផ្ញើសារតាមរយៈប្រវត្តិរូប LinkedIn របស់គាត់ <a href='[LINKEDIN_URL]' target='_blank' className='text-primary font-bold'>LinkedIn</a>។"
+        }
+    ]
+}
