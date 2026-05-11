@@ -1,13 +1,13 @@
 /**
  * Thin wrapper around `fetch` that targets the upstream pphat API.
  *
- * Base URL: process.env.NEXT_PUBLIC_API  (falls back to https://api.pphat.top)
+ * Base URL: process.env.NEXT_PUBLIC_API  (falls back to ${process.env.NEXT_PUBLIC_API})
  *
  * Usage:
  *   const res = await upstream('/v1/api/auth/email/login', { method: 'POST', body })
  */
 
-const BASE_URL = process.env.NEXT_PUBLIC_API?.replace(/\/$/, '') ?? 'https://api.pphat.top';
+const BASE_URL = process.env.NEXT_PUBLIC_APP_API?.replace(/\/$/, '') ?? 'https://api.pphat.top';
 
 export interface UpstreamOptions extends Omit<RequestInit, 'body'> {
     body?: object | null;

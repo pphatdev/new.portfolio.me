@@ -6,7 +6,7 @@
  * `getSession` — GET /api/auth/me           (returns current user from token cookie)
  *
  * All functions target the internal Next.js API routes in src/app/api/auth/
- * which in turn proxy to https://api.pphat.top/v1/api/auth/...
+ * which in turn proxy to ${process.env.NEXT_PUBLIC_API}/v1/api/auth/...
  */
 
 import { AUTH_TOKEN_KEY } from './constants';
@@ -55,7 +55,7 @@ export class AuthError extends Error {
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API?.replace(/\/$/, '') ?? 'https://api.pphat.top';
+const BASE_URL = process.env.NEXT_PUBLIC_APP_API?.replace(/\/$/, '') ?? 'https://api.pphat.top';
 
 /**
  * Sign in with email + password.

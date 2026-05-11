@@ -2,7 +2,7 @@
  * GET /api/auth/me
  *
  * Proxies the request to:
- *   GET https://api.pphat.top/v1/api/auth/me
+ *   GET ${process.env.NEXT_PUBLIC_API}/v1/api/auth/me
  *   Authorization: Bearer <auth_token cookie value>
  *
  * Returns the current authenticated user object, or 401 if no valid session.

@@ -2,7 +2,7 @@
  * POST /api/auth/refresh
  *
  * Proxies the request to:
- *   POST https://api.pphat.top/v1/api/auth/refresh
+ *   POST ${process.env.NEXT_PUBLIC_API}/v1/api/auth/refresh
  *   Body: { refreshToken }
  *
  * On success (200) the upstream returns a new { accessToken, refreshToken }

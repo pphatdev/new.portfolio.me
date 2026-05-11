@@ -2,7 +2,7 @@
  * POST /api/auth/logout
  *
  * Proxies the request to:
- *   POST https://api.pphat.top/v1/api/auth/logout
+ *   POST ${process.env.NEXT_PUBLIC_API}/v1/api/auth/logout
  *   Body: { refreshToken }   (optional — send if the client has it)
  *
  * Regardless of the upstream response, this handler:

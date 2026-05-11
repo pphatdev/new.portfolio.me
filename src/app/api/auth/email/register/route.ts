@@ -2,7 +2,7 @@
  * POST /api/auth/email/register
  *
  * Proxies the request to:
- *   POST https://api.pphat.top/v1/api/auth/email/register
+ *   POST ${process.env.NEXT_PUBLIC_API}/v1/api/auth/email/register
  *   Body: { email, name, password }
  *
  * On success (201) the upstream returns:

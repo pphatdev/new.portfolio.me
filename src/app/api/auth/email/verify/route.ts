@@ -2,7 +2,7 @@
  * POST /api/auth/email/verify
  *
  * Proxies the request to:
- *   POST https://api.pphat.top/v1/api/auth/email/verify
+ *   POST ${process.env.NEXT_PUBLIC_API}/v1/api/auth/email/verify
  *   Body: { email, otp }
  *
  * On success (200) the upstream returns { accessToken, refreshToken }.

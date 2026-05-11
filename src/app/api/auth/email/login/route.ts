@@ -2,7 +2,7 @@
  * POST /api/auth/email/login
  *
  * Proxies the request to:
- *   POST https://api.pphat.top/v1/api/auth/email/login
+ *   POST ${process.env.NEXT_PUBLIC_API}/v1/api/auth/email/login
  *   Body: { email, password }
  *
  * On success (200) the upstream returns { accessToken, refreshToken }.
