@@ -73,11 +73,15 @@ export async function signIn(
     try {
         res = await fetch(`${BASE_URL}/v1/api/auth/email/login`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json',
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            },
             body: JSON.stringify({ email, password }),
         });
     } catch (err: any) {
-        throw new AuthError('Unable to connect to the authentication server. Please try again later.');
+        // Network errors (like ConnectTimeoutError) will be caught here.
+        throw new AuthError(`Network Error: Unable to connect to ${BASE_URL}. The server timed out.`);
     }
 
     if (!res.ok) {
