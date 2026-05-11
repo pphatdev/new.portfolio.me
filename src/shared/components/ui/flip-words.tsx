@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/shared/libs/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 
 export const FlipWords = ({

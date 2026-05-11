@@ -4,15 +4,15 @@ import { type VariantProps, cva } from "class-variance-authority"
 import * as React from "react"
 
 const buttonVariants = cva(
-    "inline-flex items-center justify-center cursor-pointer gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+    "inline-flex items-center justify-center cursor-pointer gap-2 whitespace-nowrap rounded-full text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
     {
         variants: {
             variant: {
-                default: "hover:bg-foreground/5 text-primary max-sm:px-3 max-sm:pr-4 max-sm:bg-foreground/5 font-sans transition-all duration-300 max-sm:mt-0 mt-7 items-center max-sm:ring hover:ring w-fit ring-foreground/10 justify-start flex rounded-full hover:px-4 p-1.5",
+                default: "hover:bg-primary/5 text-primary max-sm:px-3 max-sm:pr-4 max-sm:bg-foreground/5 font-sans transition-all duration-300 max-sm:mt-0 mt-7 items-center max-sm:ring hover:ring w-fit ring-foreground/10 justify-start flex rounded-full hover:px-4 p-1.5",
                 destructive: "bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-                outline: "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
+                outline: "border border-foreground/10 bg-transparent hover:shadow-xs hover:bg-foreground/10 hover:text-primary",
                 secondary: "bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80",
-                ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
+                ghost: "hover:bg-primary/10 hover:text-primary dark:hover:bg-primary/10",
                 link: "text-primary underline-offset-4 hover:underline",
             },
             size: {
