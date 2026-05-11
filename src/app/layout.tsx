@@ -1,5 +1,5 @@
 import "../shared/styles/globals.css"
-import { ThemeProvider } from 'next-themes';
+import { ThemeProvider } from '@/shared/extension/next-theme-provider';
 import { aladin, kantumruyPro, poppins, srisakdi, openSans } from "@/shared/libs/fonts";
 import { cn } from "@/shared/libs/utils";
 import ProgressBarProvider from '@/shared/extension/progress-bar-provider';
