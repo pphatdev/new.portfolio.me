@@ -4,6 +4,7 @@ import { aladin, kantumruyPro, poppins, srisakdi, openSans } from "@/shared/libs
 import { cn } from "@/shared/libs/utils";
 import ProgressBarProvider from '@/shared/extension/progress-bar-provider';
 import DefaultHead from '@/shared/seo/head';
+import { NavigationBar } from "@/shared/components/layouts/navbar";
 
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     disableTransitionOnChange
                 >
                     <ProgressBarProvider>
+                        <NavigationBar />
                         {children}
                     </ProgressBarProvider>
                 </ThemeProvider>

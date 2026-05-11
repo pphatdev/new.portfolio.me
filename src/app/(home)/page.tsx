@@ -1,4 +1,3 @@
-import { NavigationBar } from "@/shared/components/layouts/navbar";
 import HeroSection from "./hero";
 
 export default function Home() {
@@ -7,7 +6,6 @@ export default function Home() {
             {/* <HomePersonStructuredData />
             <WebsiteStructuredData />
             <OrganizationStructuredData /> */}
-            <NavigationBar />
 
             <HeroSection />
         </div>
