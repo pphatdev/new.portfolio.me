@@ -19,12 +19,7 @@ export async function loginAction(prevState: any, formData: FormData) {
         })
     } catch (error) {
         if (error instanceof AuthError) {
-            switch (error.type) {
-                case "CredentialsSignin":
-                    return { error: "Invalid email or password" }
-                default:
-                    return { error: "Something went wrong. Please try again." }
-            }
+            return { error: error.message }
         }
         throw error // Rethrow redirect errors (Next.js needs them)
     }

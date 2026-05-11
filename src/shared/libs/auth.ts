@@ -69,11 +69,16 @@ export async function signIn(
 ): Promise<void> {
     const { email, password, redirectTo } = options;
 
-    const res = await fetch(`${BASE_URL}/v1/api/auth/email/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-    });
+    let res: Response;
+    try {
+        res = await fetch(`${BASE_URL}/v1/api/auth/email/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
+    } catch (err: any) {
+        throw new AuthError('Unable to connect to the authentication server. Please try again later.');
+    }
 
     if (!res.ok) {
         const body = await res.json().catch(() => ({}));
