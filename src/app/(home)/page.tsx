@@ -1,7 +1,15 @@
+import { NavigationBar } from "@/shared/components/layouts/navbar";
+import HeroSection from "./hero";
+
 export default function Home() {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            TESt
-        </main>
+        <div className="w-full flex flex-col">
+            {/* <HomePersonStructuredData />
+            <WebsiteStructuredData />
+            <OrganizationStructuredData /> */}
+            <NavigationBar />
+
+            <HeroSection />
+        </div>
     );
 }
