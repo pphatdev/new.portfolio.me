@@ -1,0 +1,20 @@
+{
+    "navbar": [
+        {
+            "name": "Projects",
+            "link": "/projects"
+        },
+        {
+            "name": "Blogs",
+            "link": "/posts"
+        },
+        {
+            "name": "About me",
+            "link": "/about"
+        },
+        {
+            "name": "Contact",
+            "link": "/contact"
+        }
+    ]
+}

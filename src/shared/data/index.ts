@@ -1,5 +1,6 @@
 import * as faqJson from './faq.json';
 import * as contactJson from './contact.json';
+import * as navJson from './menu.json';
 
 export const appName = "LEAT Sophat";
 
@@ -9,3 +10,4 @@ export const appPositions = ["Senior Front-end Developer.", "UI/UX Designer."];
 
 export const faqData = faqJson;
 export const contactData = contactJson;
+export const navbarMenu = navJson.navbar;
