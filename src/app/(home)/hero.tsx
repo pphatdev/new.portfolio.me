@@ -57,14 +57,14 @@ export default function HeroSection() {
         <section id="hero" className="w-full pt-20 xl:pt-40 p-5 flex min-h-180 items-center justify-center mx-auto h-full overflow-x-hidden relative">
             <h1 className="sr-only">{appName}</h1>
             <p className="sr-only">{appDescriptions}</p>
-            <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            {/* <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
                 <GridPattern
                     width={30}
                     height={30}
                     strokeDasharray={"4 2"}
                     className={"mask-[radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full"}
                 />
-            </div>
+            </div> */}
 
             <div className="flex max-w-5xl justify-center mx-auto lg:-translate-y-20 max-md:justify-start z-20 flex-col lg:flex-row md:h-full items-center gap-4" aria-label="Introduction">
                 <div className="px-2 sm:p-10 w-full max-w-3xl">
