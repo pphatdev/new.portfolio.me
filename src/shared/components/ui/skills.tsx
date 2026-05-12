@@ -1,78 +1,86 @@
 "use client";
 
 import { cn } from "@/shared/libs/utils";
-import Image from "next/image";
 import AutoScroll from "embla-carousel-auto-scroll";
 import { NextJsIcon } from "../icons/nextjs";
 import { Carousel, CarouselContent, CarouselItem } from "./carousel";
+import { TypeScriptIcon } from "../icons/typescript";
+import { JavaScriptIcon } from "../icons/javascript";
+import { ReactIcon } from "../icons/reactjs";
+import { VueIcon } from "../icons/vuejs";
+import { NuxtIcon } from "../icons/nuxtjs";
+import { PhpIcon } from "../icons/php";
+import { LaravelIcon } from "../icons/laravel";
+import { CssIcon } from "../icons/css";
+import { TailwindIcon } from "../icons/tailwindcss";
+import { NodeJsIcon } from "../icons/nodejs";
 
 const logos = [
     {
         id: "logo-1",
         description: "TypeScript",
-        image: "./assets/brands/language/typescript.svg",
-        className: "h-5",
+        icons: TypeScriptIcon,
+        className: "text-blue-600",
     },
     {
         id: "logo-2",
         description: "JavaScript",
-        image: "./assets/brands/language/javascript.svg",
-        className: "h-5",
+        icons: JavaScriptIcon,
+        className: "text-yellow-500",
     },
     {
         id: "logo-3",
-        description: "Node JS",
-        image: "./assets/brands/language/nodejs.svg",
-        className: "h-5",
+        description: "Node.JS",
+        icons: NodeJsIcon,
+        className: "text-green-600",
     },
     {
         id: "logo-4",
-        description: "React JS",
-        image: "./assets/brands/language/react.svg",
-        className: "h-5",
+        description: "React.JS",
+        icons: ReactIcon,
+        className: "text-sky-500",
     },
     {
         id: "logo-5",
-        description: "Next Js",
-        image: "./assets/brands/language/nextjs.svg",
+        description: "Next.JS",
         icons: NextJsIcon,
-        className: "h-7 w-7",
+        className: "text-foreground",
     },
     {
         id: "logo-6",
-        description: "Vue JS",
-        image: "./assets/brands/language/vuejs.svg",
-        className: "h-5",
+        description: "Vue.JS",
+        icons: VueIcon,
+        className: "text-emerald-500",
     },
     {
         id: "logo-7",
-        description: "Nuxt JS",
-        image: "./assets/brands/language/nuxtjs.svg",
-        className: "h-5",
+        description: "Nuxt.JS",
+        icons: NuxtIcon,
+        className: "text-emerald-400",
     },
     {
         id: "logo-8",
         description: "PHP",
-        image: "./assets/brands/language/php.svg",
-        className: "h-5",
+        icons: PhpIcon,
+        className: "text-indigo-600 size-7",
     },
     {
         id: "logo-9",
         description: "Laravel",
-        image: "./assets/brands/language/laravel.svg",
-        className: "h-5",
+        icons: LaravelIcon,
+        className: "text-red-500",
     },
     {
         id: "logo-10",
         description: "CSS",
-        image: "./assets/brands/language/css.svg",
-        className: "h-5",
+        icons: CssIcon,
+        className: "text-blue-500",
     },
     {
         id: "logo-11",
-        description: "Tailwind CSS",
-        image: "./assets/brands/language/tailwind.svg",
-        className: "h-5",
+        description: "Tailwind.CSS",
+        icons: TailwindIcon,
+        className: "text-cyan-400",
     },
 ];
 
@@ -92,17 +100,8 @@ export const Skills = () => {
                                 className="flex justify-center w-full pl-0 basis-1/4"
                             >
                                 <div className="px-10 flex shrink-0 gap-1 items-center justify-center">
-                                    {logo.icons && <logo.icons />}
-                                    {!logo.icons && (
-                                        <Image
-                                            width={100}
-                                            height={100}
-                                            src={logo.image}
-                                            alt={logo.description}
-                                            className={cn("h-7 w-7", logo.className)}
-                                        />
-                                    )}
-                                    <span className='font-medium'>{logo.description}</span>
+                                    {logo.icons && <logo.icons className={logo.className} />}
+                                    <span className='font-medium text-foreground/70'>{logo.description}</span>
                                 </div>
                             </CarouselItem>
                         ))}
