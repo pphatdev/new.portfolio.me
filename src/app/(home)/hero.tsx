@@ -1,7 +1,6 @@
 "use client";
 
 import { BlurFade } from "@/shared/components/background/blur-fade";
-import { GridPattern } from "@/shared/components/background/grid-pattern";
 import RainbowEffects from "@/shared/components/background/rainbow-effects";
 import { Badge } from "@/shared/components/ui/badge";
 import { Cover } from "@/shared/components/ui/cover";
@@ -54,7 +53,7 @@ export default function HeroSection() {
 
 
     return (
-        <section id="hero" className="w-full pt-20 xl:pt-40 p-5 flex min-h-180 items-center justify-center mx-auto h-full overflow-x-hidden relative">
+        <section id="hero" className="w-full pt-20 xl:pt-48 p-5 flex min-h-180 items-center justify-center mx-auto h-full overflow-x-hidden relative">
             <h1 className="sr-only">{appName}</h1>
             <p className="sr-only">{appDescriptions}</p>
 
@@ -94,7 +93,7 @@ export default function HeroSection() {
                         <FlipWords words={appPositions} />
                     </div>
 
-                    <BlurFade delay={0.50} inView className="mt-5 relative flex text-foreground/90 flex-col gap-4 text-center max-w-full md:text-left">
+                    <BlurFade delay={0.50} inView className="mt-10 relative flex text-foreground/90 flex-col gap-4 text-center max-w-full md:text-left">
                         {appDescriptions.split('\n\n').map((description, index) => (
                             <p key={index} dangerouslySetInnerHTML={{ __html: description }} />
                         ))}

@@ -97,9 +97,9 @@ export const Skills = () => {
                         {logos.map((logo) => (
                             <CarouselItem
                                 key={logo.id}
-                                className="flex justify-center w-full pl-0 basis-1/4"
+                                className="flex justify-center w-full pl-0 basis-1/5"
                             >
-                                <div className="px-10 flex shrink-0 gap-1 items-center justify-center">
+                                <div className="px-4 flex shrink-0 gap-1 items-center justify-center">
                                     {logo.icons && <logo.icons className={logo.className} />}
                                     <span className='font-medium text-foreground/70'>{logo.description}</span>
                                 </div>
