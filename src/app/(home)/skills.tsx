@@ -24,7 +24,7 @@ export const SectionSkills = () => {
     ]
 
     return (
-        <div className="max-w-5xl flex flex-col items-center my-20 justify-center mx-auto">
+        <section id="skills" className="max-w-5xl flex flex-col items-center my-20 justify-center mx-auto">
             <BlurFade delay={0.25} inView className="flex flex-col items-center justify-center pb-1 mt-5">
                 <div className="block w-full px-5 py-3 ">
                     <Badge variant="outline" className='py-1.5 px-3'>My Skills</Badge>
@@ -59,6 +59,6 @@ export const SectionSkills = () => {
                     })}
                 </div>
             </BlurFade>
-        </div>
+        </section>
     )
 }
