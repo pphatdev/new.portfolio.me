@@ -41,6 +41,61 @@
   --color-destructive-muted-foreground: hsl(var(--destructive-muted-foreground));
   --color-destructive-accent: hsl(var(--destructive-accent));
   --color-destructive-accent-foreground: hsl(var(--destructive-accent-foreground));
+
+
+  --animate-orbit: orbit var(--duration, 10s) linear infinite;
+  --animate-meteor: meteor var(--duration, 5s) linear infinite;
+  --animate-ripple: ripple var(--duration, 2s) ease calc(var(--i, 0) * 0.2s) infinite;
+
+  @keyframes orbit {
+    0% {
+      transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+    }
+
+    100% {
+      transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc((var(--angle) * -1deg) - 360deg));
+    }
+  }
+
+  @keyframes meteor {
+    0% {
+      transform: rotate(var(--angle)) translateX(0);
+      opacity: 1;
+    }
+
+    70% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: rotate(var(--angle)) translateX(-500px);
+      opacity: 0;
+    }
+  }
+
+  @keyframes ripple {
+
+    0%,
+    100% {
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+  }
+
+  --animate-background-position-spin: background-position-spin 3000ms infinite alternate;
+
+  @keyframes background-position-spin {
+    0% {
+      background-position: top center;
+    }
+
+    100% {
+      background-position: bottom center;
+    }
+  }
 }
 
 
@@ -107,8 +162,6 @@
     --destructive-accent: 240 5.9% 10%;
     --destructive-accent-foreground: 163 96% 25%;
   }
-
-
 
   body {
     @apply bg-background text-foreground font-sans antialiased;

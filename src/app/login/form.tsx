@@ -97,7 +97,7 @@ export function LoginForm({ className, callbackUrl, ...props }: React.ComponentP
                             </MagneticArea>
 
                             <BlurFade delay={0.8} className="relative text-center mt-5 text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-foreground/10">
-                                <span className="relative z-10 bg-background px-2 text-muted-foreground">
+                                <span className="relative z-10 bg-background px-2 text-foreground/80 foreground">
                                     Or continue with
                                 </span>
                             </BlurFade>
@@ -126,7 +126,7 @@ export function LoginForm({ className, callbackUrl, ...props }: React.ComponentP
                 </CardContent>
             </Card>
             <BlurFade delay={0.4} className='flex flex-col items-center'>
-                <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
+                <div className="text-balance text-center text-xs text-foreground/80 foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
                     By clicking continue, you agree to our <a href="#">Terms of Service</a>{' '}
                     and <a href="#">Privacy Policy</a>.
                 </div>

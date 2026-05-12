@@ -1,6 +1,5 @@
 "use client";
 
-import { cn } from "@/shared/libs/utils";
 import AutoScroll from "embla-carousel-auto-scroll";
 import { NextJsIcon } from "../icons/nextjs";
 import { Carousel, CarouselContent, CarouselItem } from "./carousel";

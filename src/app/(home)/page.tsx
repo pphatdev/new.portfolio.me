@@ -1,5 +1,7 @@
+import Footer from "@/shared/components/layouts/footer";
 import HeroSection from "./hero";
 import { SectionSkills } from "./skills";
+import { GotoTop } from "@/shared/components/layouts/goto-top";
 
 export default function Home() {
     return (
@@ -13,6 +15,12 @@ export default function Home() {
 
             {/* Skill Section */}
             <SectionSkills />
+
+            {/* Goto Top Section */}
+            <GotoTop />
+
+            {/* Footer Section */}
+            <Footer />
         </div>
     );
 }
