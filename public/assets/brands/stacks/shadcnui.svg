@@ -1,0 +1,20 @@
+<svg width="48" height="48" viewBox="-10.2941 -10.2941 44.5884 44.5884" xmlns="http://www.w3.org/2000/svg"><rect x="-10.2941" y="-10.2941" width="44.5884" height="44.5884" rx="15" fill="currentColor" opacity="0.1"/>
+            <style>
+        @keyframes popup {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        #shadcnui-logo {
+            animation: popup 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+    </style>
+    <g id="shadcnui-logo">
+    <title>shadcn/ui</title><path fill="currentColor" d="M22.219 11.784 11.784 22.219c-.407.407-.407 1.068 0 1.476.407.407 1.068.407 1.476 0L23.695 13.26c.407-.408.407-1.069 0-1.476-.408-.407-1.069-.407-1.476 0ZM20.132.305.305 20.132c-.407.407-.407 1.068 0 1.476.408.407 1.069.407 1.476 0L21.608 1.781c.407-.407.407-1.068 0-1.476-.408-.407-1.069-.407-1.476 0Z" />
+    </g>
+</svg>
