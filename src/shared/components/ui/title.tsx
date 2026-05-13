@@ -14,8 +14,8 @@ export const Title = ({ as = 'h2', title, description, className }: {
     const middleWords = title.slice(0, title.length - 1).join(' ');
 
     return (
-        <div className={cn(className)}>
-            <Heading className="max-md:mb-3 px-5 w-full py-3 max-md:text-3xl text-5xl tracking-tighter font-bold font-sans">
+        <>
+            <Heading className={cn("sticky top-20 z-999 max-md:mb-3 px-5 w-full py-3 max-md:text-3xl text-4xl tracking-tighter font-bold font-sans", className)}>
                 {middleWords} <span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-linear-to-r  from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> {lastWord}</span>
             </Heading>
 
@@ -32,6 +32,6 @@ export const Title = ({ as = 'h2', title, description, className }: {
                     {description}
                 </div>
             )}
-        </div>
+        </>
     );
 }
