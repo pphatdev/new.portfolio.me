@@ -53,7 +53,7 @@ export default function HeroSection() {
 
 
     return (
-        <section id="hero" className="w-full pt-20 xl:pt-48 p-5 flex min-h-180 items-center justify-center mx-auto h-full overflow-x-hidden relative">
+        <section id="hero" className="w-full pt-20 xl:pt-48 p-5 flex items-center min-h-screen justify-center mx-auto h-full overflow-x-hidden relative">
             <h1 className="sr-only">{appName}</h1>
             <p className="sr-only">{appDescriptions}</p>
 
@@ -82,7 +82,7 @@ export default function HeroSection() {
                     <BlurFade delay={0.15} inView>
                         <div className="text-3xl text-center md:text-left md:text-6xl font-bold">
                             <div className="relative mx-auto inline-block w-max filter-[drop-shadow(0px_1px_3px_rgba(27,37,80,0.14))]">
-                                <div className="relative bg-clip-text text-transparent bg-no-repeat bg-linear-to-r  from-sky-500 via-teal-500 to-green-500 py-4 [text-rendering:optimizeLegibility]">
+                                <div className="relative bg-clip-text text-transparent bg-no-repeat bg-linear-to-r from-sky-500 via-teal-500 to-green-500 py-4 [text-rendering:optimizeLegibility]">
                                     <span className="mr-2 -ml-0.5 font-sans [font-display:swap]">{`Hi I'm`}</span>
                                 </div>
                             </div>
