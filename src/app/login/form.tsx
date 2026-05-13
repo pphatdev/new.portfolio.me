@@ -51,10 +51,10 @@ export function LoginForm({ className, callbackUrl, ...props }: React.ComponentP
 
             <Card className="p-0 rounded-4xl bg-linear-0 from-primary/5 to-transparent backdrop-blur-2xl max-w-md mx-auto border-primary/70 ring-3 ring-primary/10">
                 <CardContent className="grid p-0">
-                    <form action={formAction} className="p-6 md:p-12">
+                    <form action={formAction} className="p-6 md:p-10">
                         <input type="hidden" name="callbackUrl" value={callbackUrl || ''} />
                         <BlurFade className="flex flex-col gap-5 text-foreground/90 min-h-96">
-                            <div className='mb-4 text-center'>
+                            <div className='mb-5 text-center'>
                                 <h1 className="text-2xl flex items-center justify-center gap-2 font-bold">
                                     <span className="relative flex size-4 shrink-0">
                                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60" />

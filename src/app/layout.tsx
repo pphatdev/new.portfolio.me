@@ -5,7 +5,6 @@ import { cn } from "@/shared/libs/utils";
 import ProgressBarProvider from '@/shared/extension/progress-bar-provider';
 import DefaultHead from '@/shared/seo/head';
 import { NavigationBar } from "@/shared/components/layouts/navbar";
-import RainbowEffects from "@/shared/components/background/rainbow-effects";
 import { GridPattern } from "@/shared/components/background/grid-pattern";
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
@@ -14,7 +13,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <head>
                 <DefaultHead />
             </head>
-            <body className={cn(poppins.variable, kantumruyPro.variable, aladin.variable, srisakdi.variable, openSans.variable, `antialiased p-0 m-0 font-sans bg-body`)} style={{ overflowX: 'hidden' }}>
+            <body className={cn(poppins.variable, kantumruyPro.variable, aladin.variable, srisakdi.variable, openSans.variable, `antialiased p-0 m-0 font-sans bg-body `)} style={{ overflowX: 'hidden' }}>
                 <ThemeProvider
                     attribute="class"
                     enableSystem
@@ -23,7 +22,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                 >
                     <ProgressBarProvider>
                         <NavigationBar />
-                        <RainbowEffects className="opacity-5" />
                         <div className="absolute inset-y-0 left-1/3 right-0 pointer-events-none" aria-hidden="true">
                             <GridPattern width={30} height={30} x={-1} y={-1} strokeDasharray={"4 2"} className={"mask-[radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "} />
                         </div>
