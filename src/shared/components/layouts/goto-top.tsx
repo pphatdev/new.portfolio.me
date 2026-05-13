@@ -6,7 +6,7 @@ import Link from "next/link";
 import React, { useEffect, useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
 
-export const GotoTop = ({ sections = ["hero", "skills", "about", "features", "faq", "contact",] }: { sections?: string[]; }) => {
+export const GotoTop = ({ sections = ["hero", "about", "skills", "projects", "faq", "contact",] }: { sections?: string[]; }) => {
     const [activeSection, setActiveSection] = useState('hero');
     const [isHomeSection, setIsHomeSection] = useState(true);
     const [isScrolling, setIsScrolling] = useState(false);

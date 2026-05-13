@@ -58,7 +58,7 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="w-full border-t sm:px-3 mt-20 border-foreground/5 bg-linear-to-b from-background via-background/95 to-background backdrop-blur supports-backdrop-filter:bg-background/60">
+        <footer className="relative w-full border-t sm:px-3 mt-20 border-foreground/5 bg-linear-to-b from-background via-background/95 to-background backdrop-blur supports-backdrop-filter:bg-background/60">
 
             <div className="absolute overflow-hidden inset-0 pointer-events-none" aria-hidden="true">
                 <Ripple mainCircleSize={150} numCircles={12} className="opacity-30" />
@@ -138,27 +138,32 @@ export default function Footer() {
 
                 {/* Bottom Bar */}
                 <div className="pt-8 border-t border-foreground/5 bg-background">
-                    <div className="flex flex-col md:flex-row justify-center items-center gap-4 sm:px-5">
+                    <div className="flex flex-col md:flex-row justify-between items-center gap-4 sm:px-5">
                         <p className="text-sm text-foreground/80 foreground text-center md:text-left">
                             Copyright © {currentYear}{" "}
                             <Link href="/" className="font-semibold text-foreground hover:text-primary transition-colors" > {alterName} </Link>
                             {" "}· All rights reserved
                         </p>
 
-                        {/* <div className="flex items-center gap-6">
-                            <Link
-                                href="/privacy"
-                                className="text-sm text-foreground/80 foreground hover:text-foreground transition-colors"
-                            >
-                                Privacy Policy
-                            </Link>
-                            <Link
+                        <div className="flex items-center gap-6">
+                            <Button variant={'ghost'} asChild className="mt-0 text-foreground/70 h-7 text-xs hover:text-primary">
+                                <Link href="https://github.com/pphatdev/api.pphat.me?tab=security-ov-file#security-policy">
+                                    <span className="flex min-w-0 items-center gap-2">
+                                        <span className="relative flex size-2 shrink-0">
+                                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary/60" />
+                                            <span className="relative inline-flex size-2 rounded-full bg-primary" />
+                                        </span>
+                                        <span className="truncate text-foreground">Privacy Policy</span>
+                                    </span>
+                                </Link>
+                            </Button>
+                            {/* <Link
                                 href="/terms"
                                 className="text-sm text-foreground/80 foreground hover:text-foreground transition-colors"
                             >
                                 Terms of Service
-                            </Link>
-                        </div> */}
+                            </Link> */}
+                        </div>
                     </div>
                 </div>
             </div>
