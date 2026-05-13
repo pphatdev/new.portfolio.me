@@ -16,6 +16,34 @@ const nextConfig: NextConfig = {
             },
         ];
     },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'github.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'avatars.githubusercontent.com',
+            },
+            {
+                protocol: 'https',
+                hostname: 'pphat.me',
+            },
+            {
+                protocol: 'https',
+                hostname: 'blog-api.pphatdev.workers.dev',
+            },
+            {
+                protocol: 'https',
+                hostname: 'pphat.top',
+            },
+            {
+                protocol: 'https',
+                hostname: 'api.pphat.top',
+            }
+        ],
+    },
 };
 
 
