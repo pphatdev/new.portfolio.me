@@ -5,106 +5,11 @@ import { motion } from 'framer-motion';
 import { ExperienceCard } from "@/shared/components/ui/experience-card";
 import { cn } from "@/shared/libs/utils";
 import { CompaniesProps } from "@/shared/hooks/skills";
-import { NextJsIcon } from "@/shared/components/icons/nextjs";
 import { Badge } from "@/shared/components/ui/badge";
 import { Title } from "@/shared/components/ui/title";
 
-export const SectionExperience = () => {
 
-    const experiences: CompaniesProps[] = [
-        {
-            title: "TURBOTECH CO., LTD",
-            logo: "assets/brands/org/turbotech.png",
-            works: [
-                {
-                    date: "Oct 2022 - Present",
-                    title: "Senior Frontend Developer",
-                    skills: [
-                        { title: "Figma", image: "assets/brands/design/figma.svg" },
-                        { title: "Laravel", image: "assets/brands/stacks/laravel.svg" },
-                        { title: "React", image: "assets/brands/stacks/react.svg" },
-                        { title: "Next.js", image: "assets/brands/stacks/nextjs.svg" },
-                        { title: "Tailwind CSS", image: "assets/brands/stacks/tailwindcss.svg" },
-                        { title: "Typescript", image: "assets/brands/stacks/typescript.svg" },
-                        { title: "Node.js", image: "assets/brands/stacks/nodejs.svg" },
-                        { title: "Express.js", image: "assets/brands/stacks/express.svg" },
-                        { title: "PostgreSQL", image: "assets/brands/stacks/postgresql.svg" },
-                        { title: "MySQL", image: "assets/brands/stacks/mysql.svg" },
-                    ]
-                },
-                {
-                    date: "Oct 2020 - Oct 2022",
-                    title: "Junior Frontend Developer",
-                    skills: [
-                        { title: "JavaScript", image: "assets/brands/stacks/javascript.svg" },
-                        { title: "JQuery", image: "assets/brands/stacks/jquery.svg" },
-                        { title: "HTML", image: "assets/brands/stacks/html.svg" },
-                        { title: "CSS", image: "assets/brands/stacks/css.svg" },
-                        { title: "Sass", image: "assets/brands/stacks/sass.svg" },
-                        { title: "Tailwind CSS", image: "assets/brands/stacks/tailwindcss.svg" },
-                        { title: "Bootstrap", image: "assets/brands/stacks/bootstrap.svg" },
-                        { title: "PHP", image: "assets/brands/stacks/php.svg" },
-                        { title: "MySQL", image: "assets/brands/stacks/mysql.svg" },
-                        { title: "Laravel", image: "assets/brands/stacks/laravel.svg" },
-                    ]
-                },
-                {
-                    date: "Nov 2019 - Oct 2020",
-                    title: "Content Writing Officer & UI/UX Designer",
-                    skills: [
-                        { title: "Ms.Word", image: "assets/brands/office/word.svg" },
-                        { title: "Ms.Excel", image: "assets/brands/office/excel.svg" },
-                        { title: "Ms.Powerpoint", image: "assets/brands/office/powerpoint.svg" },
-                        { title: "Figma", image: "assets/brands/design/figma.svg" },
-                        { title: "Adobe XD", image: "assets/brands/design/xd.svg" },
-                    ]
-                }
-            ]
-        },
-        {
-            title: "Nintrea Labs",
-            logo: "assets/brands/org/nintrea.png",
-            works: [
-                {
-                    date: "2021 - Present",
-                    title: "Creator & Developer of Nintrea",
-                    skills: [
-                        { title: "Figma", image: "assets/brands/design/figma.svg" },
-                        { title: "HTML", image: "assets/brands/stacks/html.svg" },
-                        { title: "CSS", image: "assets/brands/stacks/css.svg" },
-                        { title: "JavaScript", image: "assets/brands/stacks/javascript.svg" },
-                        { title: "Typescript", image: "assets/brands/stacks/typescript.svg" },
-                        { title: "JQuery", image: "assets/brands/stacks/jquery.svg" },
-                        { title: "Tailwind CSS", image: "assets/brands/stacks/tailwind.svg" },
-                        { title: "Sass", image: "assets/brands/stacks/sass.svg" },
-                        { title: "Bootstrap", image: "assets/brands/stacks/bootstrap.svg" },
-                        { title: "React", image: "assets/brands/stacks/react.svg" },
-                        { title: "Next.js", icon: <NextJsIcon className="size-6 stroke-1 text-foreground/90" /> },
-                        { title: "Nuxt.js", image: "assets/brands/stacks/nuxtjs.svg" },
-                        { title: "EJS", image: "assets/brands/stacks/ejs.svg" },
-                        { title: "PHP", image: "assets/brands/stacks/php.svg" },
-                        { title: "Laravel", image: "assets/brands/stacks/laravel.svg" },
-                        { title: "Node.js", image: "assets/brands/stacks/nodejs.svg" },
-                        { title: "Express.js", image: "assets/brands/stacks/express.svg" },
-                        { title: "Hono", image: "assets/brands/stacks/hono.svg" },
-                        { title: "PostgreSQL", image: "assets/brands/stacks/pgsql.svg" },
-                        { title: "MySQL", image: "assets/brands/stacks/mysql.svg" },
-                        { title: "Vercel", image: "assets/brands/stacks/vercel.svg" },
-                        { title: "Netlify", image: "assets/brands/stacks/netlify.svg" },
-                        { title: "Worker", image: "assets/brands/stacks/cloudflare-workers.svg" },
-                        { title: "Github", image: "assets/brands/stacks/github.svg" },
-                        { title: "Ubuntu", image: "assets/brands/stacks/ubuntu.svg" },
-                        { title: "Nginx", image: "assets/brands/stacks/nginx.svg" },
-                        { title: "C#", image: "assets/brands/stacks/csharp.svg" },
-                        { title: "C++", image: "assets/brands/stacks/cpp.svg" },
-                        { title: "Python", image: "assets/brands/stacks/python.svg" },
-                        { title: "Git", image: "assets/brands/stacks/git.svg" },
-                        { title: "GitLab", image: "assets/brands/stacks/gitlab.svg" }
-                    ]
-                }
-            ]
-        }
-    ]
+export const SectionExperience = ({ experiences }: { experiences: CompaniesProps[] }) => {
 
     return (
         <motion.section

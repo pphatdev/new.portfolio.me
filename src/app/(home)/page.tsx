@@ -5,6 +5,7 @@ import { GotoTop } from "@/shared/components/layouts/goto-top";
 import { SectionAboutMe } from "./about";
 import { SectionProjects } from "@/app/(home)/projects";
 import { SectionExperience } from "./experience";
+import { experiencesData } from "./experience-data";
 
 export default function Home() {
     return (
@@ -26,7 +27,7 @@ export default function Home() {
             <SectionProjects />
 
             {/* Experience Section */}
-            <SectionExperience />
+            <SectionExperience experiences={experiencesData} />
 
             {/* Goto Top Section */}
             <GotoTop />

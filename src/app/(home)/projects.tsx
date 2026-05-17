@@ -15,7 +15,7 @@ const Projects: React.FC = () => {
     const total = projects?.pagination.total || 0;
 
     return (
-        <div className="w-full max-w-6xl mx-auto max-sm:p-0 px-4 pb-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-7 sticky top-32">
+        <div className="w-full max-w-6xl mx-auto max-sm:p-0 sticky top-48 px-4 pb-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
             {loading && <div className="col-span-full flex justify-center items-center py-12">
                 <Spinner variant={'bars'} />
             </div>}
@@ -29,7 +29,7 @@ const Projects: React.FC = () => {
             ))}
 
             {total > 6 && (
-                <div className="bg-linear-0 from-10% from-background via-background -inset-x-10 to-transparent -bottom-20 h-96 w-full z-50 absolute">
+                <div className="bg-linear-0 from-10% from-background via-background -bottom-20 h-96 w-full z-50 absolute">
                     <div className="p-5 w-full flex items-center justify-center h-full text-center">
                         <Link href={'/projects'} aria-label={'Projects'} className="group inline-flex">
                             <Badge variant="outline" className="max-w-[min(90vw,42rem)] rounded-full px-3 py-1 text-sm font-medium text-primary hover:bg-primary/15" title={'Projects'} >
@@ -54,7 +54,7 @@ const Projects: React.FC = () => {
 
 export const SectionProjects = () => {
     return (
-        <section id="projects" className="max-w-5xl flex  flex-col items-center justify-center mx-auto">
+        <section id="projects" className="max-w-5xl flex relative flex-col items-center justify-center mx-auto">
             <motion.section
                 variants={{
                     hidden: { opacity: 0, y: 30 },
@@ -66,7 +66,7 @@ export const SectionProjects = () => {
                 }}
                 initial="hidden"
                 animate="visible" className='max-w-5xl flex relative flex-col items-center justify-center mx-auto'>
-                <div className="w-full mx-auto max-sm:p-3 max-sm:pb-4 z-999 gap-4 sticky shadow-2xl shadow-primary/5 bg-background backdrop-blur-[2px]">
+                <div className="w-full mx-auto max-sm:p-3 max-sm:pb-4 z-999 gap-4 shadow-2xl shadow-primary/5 bg-background backdrop-blur-[2px]">
                     <Badge variant="outline" className='py-1.5 px-3 lg:ml-5'>Projects</Badge>
                     <Title as='h2' title={['Featured', 'Projects']} description={`Discover my portfolio of innovative web applications, from eCommerce platforms to digital libraries. Each project showcases modern development practices, user-centered design, and technical excellence in solving real-world challenges.`} />
                     <Projects />

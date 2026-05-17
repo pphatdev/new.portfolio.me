@@ -1,6 +1,7 @@
 import { WorkExperience } from "@/shared/hooks/skills";
-import Image from "next/image";
-import React, { ReactElement, SVGProps } from "react";
+import React from "react";
+import { cn } from "@/shared/libs/utils";
+import MagneticArea from "@/shared/components/ui/magnetic-area";
 
 export const ExperienceCard = (
     { title, date, skills }: WorkExperience
@@ -27,22 +28,35 @@ export const ExperienceCard = (
                     {/* <p className="mt-2 mb-3 sm:block line-clamp-2 text-foreground/80"> {description} </p> */}
 
                     <p className="text-xs my-2 font-medium">+ Basic Skills</p>
-                    <div className="flex gap-2 flex-wrap">
-                        {skills.map(({ image, icon, title }, key) => {
+                    <div className="flex gap-2 flex-wrap mt-3">
+                        {skills.map(({ title, svg }, key) => {
+                            const colors = [
+                                "text-red-500 bg-red-500/10 border-red-500/20 shadow-red-500/10",
+                                "text-blue-500 bg-blue-500/10 border-blue-500/20 shadow-blue-500/10",
+                                "text-green-500 bg-green-500/10 border-green-500/20 shadow-green-500/10",
+                                "text-purple-500 bg-purple-500/10 border-purple-500/20 shadow-purple-500/10",
+                                "text-pink-500 bg-pink-500/10 border-pink-500/20 shadow-pink-500/10",
+                                "text-orange-500 bg-orange-500/10 border-orange-500/20 shadow-orange-500/10",
+                                "text-cyan-500 bg-cyan-500/10 border-cyan-500/20 shadow-cyan-500/10",
+                                "text-teal-500 bg-teal-500/10 border-teal-500/20 shadow-teal-500/10",
+                                "text-indigo-500 bg-indigo-500/10 border-indigo-500/20 shadow-indigo-500/10",
+                            ]
+
                             return (
-                                <div key={key} className="flex space-x-1.5 shrink-0 w-fit shadow-card pr-2 shadow-primary/5 bg-background max-sm:rounded-none rounded-full items-center justify-center border p-px text-foreground/5 bg-size-[8px_8px] bg-top-left bg-[repeating-linear-gradient(315deg,currentColor_0,currentColor_1px,transparent_0,transparent_50%)]">
-                                    {icon && React.isValidElement(icon) ? React.cloneElement(icon as ReactElement<SVGProps<SVGSVGElement>>,) : null}
-                                    {!icon && image && (
-                                        <Image
-                                            src={image}
-                                            width={32}
-                                            height={32}
-                                            alt={title}
-                                            className="size-6 p-0.5 border border-foreground/10 max-sm:rounded-none rounded-full"
-                                        />
-                                    )}
-                                    <span className="text-xs text-foreground">{title}</span>
-                                </div>
+                                <MagneticArea key={key}>
+                                    <div className={cn(
+                                        "flex space-x-1.5 shrink-0 w-fit shadow-card rounded-full items-center justify-center border p-0.5 pr-3 transition-all duration-300 hover:scale-105",
+                                        colors[key % colors.length]
+                                    )}>
+                                        {svg && (
+                                            <div
+                                                className="size-5 p-0.5 z-10 [&>svg]:w-full [&>svg]:h-full [&>svg]:object-contain [&>svg]:text-current [&>svg>[data-foreground]]:text-white"
+                                                dangerouslySetInnerHTML={{ __html: svg }}
+                                            />
+                                        )}
+                                        <span className="text-[10px] font-medium text-foreground/80">{title}</span>
+                                    </div>
+                                </MagneticArea>
                             )
                         })}
                     </div>

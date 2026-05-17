@@ -2,6 +2,7 @@ export interface SkillsType {
     title: string;
     icon?: React.SVGProps<SVGSVGElement>;
     image?: string;
+    svg?: string;
 }
 
 export interface WorkExperience {
