@@ -10,3 +10,11 @@ export interface IListResponse<T> {
         totalPages: number;
     }
 }
+
+export type IBaseResponse<T, E = {}> = {
+    data: T;
+    navigation?: {
+        next?: string;
+        prev?: string;
+    }
+} & E;

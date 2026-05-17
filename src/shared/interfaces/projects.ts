@@ -1,4 +1,4 @@
-import { IListResponse } from ".";
+import { IBaseResponse, IListResponse } from ".";
 
 export interface Contributor {
     id: number
@@ -33,4 +33,17 @@ export interface Project {
     updatedAt: string
 }
 
+export interface IDetails {
+    content: string;
+    demoUrl?: string;
+    repoUrl?: string;
+    techStack: string[];
+    status: 'completed' | string;
+}
+
+
 export interface IProjectListResponse extends IListResponse<Project> { }
+export interface IProjectDetailResponse extends IBaseResponse<
+    Project & { details: IDetails },
+    { navigation: { next?: string; prev?: string } }
+> { }
