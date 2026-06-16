@@ -198,9 +198,9 @@ export default async function ProjectDetail(props: Params) {
 
                     <div className='flex max-sm:my-2 my-8 flex-col relative order-1'>
                         <h1 className='text-4xl md:text-5xl font-bold leading-tight'> <span className="text-left bg-background  bg-clip-text bg-no-repeat text-transparent bg-linear-to-r  from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]"> {data.title} </span> </h1>
-                        <div className='flex gap-2 flex-wrap items-center mt-2 justify-between'>
+                        <div className='flex gap-2 flex-wrap w-full items-center mt-2 justify-between'>
                             {(data.tags?.length || 0) > 0 && (
-                                <div className='flex flex-wrap w-fit justify-start gap-1 bg-background'>
+                                <div className='flex flex-wrap w-full justify-start gap-1 bg-background'>
                                     {(data.tags ?? []).map((tag) => (
                                         <Badge key={tag.id} variant='outline' className='py-1 rounded-md tracking-widest leading-tight font-open-sans'> @{tag.tag} </Badge>
                                     ))}

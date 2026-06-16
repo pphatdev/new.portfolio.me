@@ -157,9 +157,9 @@ export default async function BlogDetail(props: Params) {
                                 {data.title} 
                             </span> 
                         </h1>
-                        <div className='flex gap-2 flex-wrap items-center mt-2 justify-between'>
+                        <div className='flex gap-2 flex-wrap w-full items-center mt-2 justify-between'>
                             {(data.tags?.length || 0) > 0 && (
-                                <div className='flex flex-wrap w-fit justify-start gap-1 bg-background'>
+                                <div className='flex flex-wrap w-full justify-start gap-1 bg-background'>
                                     {(data.tags ?? []).map((tag) => (
                                         <Badge key={tag.id} variant='outline' className='py-1 rounded-md tracking-widest leading-tight font-open-sans'> @{tag.tag} </Badge>
                                     ))}

@@ -13,8 +13,13 @@ interface PostCoverImageProps {
 export function PostCoverImage({ src, alt, className }: PostCoverImageProps) {
     const [mounted, setMounted] = useState(false);
     const [loaded, setLoaded] = useState(false);
+    const [imgSrc, setImgSrc] = useState(src || '/assets/placeholder/rectangle.png');
 
     useEffect(() => { setMounted(true); }, []);
+
+    useEffect(() => {
+        setImgSrc(src || '/assets/placeholder/rectangle.png');
+    }, [src]);
 
     return (
         <div className="relative">
@@ -28,7 +33,7 @@ export function PostCoverImage({ src, alt, className }: PostCoverImageProps) {
             />
 
             <Image
-                src={src}
+                src={imgSrc}
                 alt={alt}
                 width={800}
                 height={550}
@@ -41,8 +46,12 @@ export function PostCoverImage({ src, alt, className }: PostCoverImageProps) {
                         : "opacity-0",
                     className
                 )}
-                unoptimized={src?.startsWith("http")}
+                unoptimized={imgSrc.startsWith("http")}
                 onLoad={() => setLoaded(true)}
+                onError={() => {
+                    setImgSrc('/assets/placeholder/rectangle.png');
+                    setLoaded(true);
+                }}
             />
 
         </div>
