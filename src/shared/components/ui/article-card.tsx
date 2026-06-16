@@ -28,7 +28,7 @@ const ArticleCard = React.memo(({ article, actionChildren, className, isAdmin = 
 
         if (navigator.share) {
             navigator.share({
-                url: `/blogs/${article.slug}`,
+                url: `/posts/${article.slug}`,
                 title: article.title
             }).catch(err => console.error('Error sharing:', err));
         }
@@ -71,7 +71,7 @@ const ArticleCard = React.memo(({ article, actionChildren, className, isAdmin = 
             <header className='mb-2 px-2 relative flex mt-2 justify-between items-center z-10'>
                 <div className="flex gap-2 items-center">
                     {article.tags?.slice(0, 3).map((tagObj, index) => (
-                        <Link key={index} href={`/blogs?tag=${encodeURIComponent(tagObj.tag)}`} className="text-xs font-sans z-50">
+                        <Link key={index} href={`/posts?tag=${encodeURIComponent(tagObj.tag)}`} className="text-xs font-sans z-50">
                             <Badge variant="outline" className="text-xs border border-primary/50 hover:bg-foreground/10 transition-colors">{tagObj.tag}</Badge>
                         </Link>
                     ))}
@@ -82,7 +82,7 @@ const ArticleCard = React.memo(({ article, actionChildren, className, isAdmin = 
                 {article.description}
             </p>
 
-            <Link href={`/blogs/${article.slug ?? '#'}`} className="inset-0 z-0 absolute" aria-label={article.title} />
+            <Link href={`/posts/${article.slug ?? '#'}`} className="inset-0 z-0 absolute" aria-label={article.title} />
         </article>
     );
 });
