@@ -27,8 +27,6 @@ interface LoginSuccess {
     refreshToken: string;
 }
 
-export const dynamic = 'force-dynamic';
-
 export async function POST(request: NextRequest): Promise<Response> {
     // ── 1. Parse & validate request body ──────────────────────────────────
     let body: LoginBody;

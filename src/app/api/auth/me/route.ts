@@ -13,8 +13,6 @@ import type { NextRequest } from 'next/server';
 import { upstream, mirrorResponse } from '../../lib/client';
 import { AUTH_TOKEN_KEY } from '@/shared/libs/constants';
 
-export const dynamic = 'force-dynamic';
-
 export async function GET(_request: NextRequest): Promise<Response> {
     const cookieStore = await cookies();
     const token = cookieStore.get(AUTH_TOKEN_KEY)?.value;

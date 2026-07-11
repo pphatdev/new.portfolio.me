@@ -15,8 +15,6 @@ import type { NextRequest } from 'next/server';
 import { upstream } from '../../lib/client';
 import { AUTH_TOKEN_KEY } from '@/shared/libs/constants';
 
-export const dynamic = 'force-dynamic';
-
 export async function POST(request: NextRequest): Promise<Response> {
     let refreshToken: string | undefined;
 

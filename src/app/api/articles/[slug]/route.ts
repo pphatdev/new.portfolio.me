@@ -1,7 +1,7 @@
 /**
- * GET /api/projects/[slug]
- * PATCH /api/projects/[slug]
- * DELETE /api/projects/[slug]
+ * GET /api/articles/[slug]
+ * PATCH /api/articles/[slug]
+ * DELETE /api/articles/[slug]
  *
  * Proxies the requests to the upstream pphat API.
  */
@@ -16,7 +16,7 @@ export async function GET(
     { params }: { params: Promise<{ slug: string }> }
 ): Promise<Response> {
     const { slug } = await params;
-    const upstreamRes = await upstream(`/v1/api/projects/${slug}`, {
+    const upstreamRes = await upstream(`/v1/api/articles/${slug}`, {
         method: 'GET',
     });
 
@@ -37,7 +37,7 @@ export async function PATCH(
 
     const body = await request.json();
 
-    const upstreamRes = await upstream(`/v1/api/projects/${slug}`, {
+    const upstreamRes = await upstream(`/v1/api/articles/${slug}`, {
         method: 'PATCH',
         token,
         body,
@@ -58,7 +58,7 @@ export async function DELETE(
         return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const upstreamRes = await upstream(`/v1/api/projects/${slug}`, {
+    const upstreamRes = await upstream(`/v1/api/articles/${slug}`, {
         method: 'DELETE',
         token,
     });

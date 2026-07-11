@@ -3,6 +3,10 @@ import type { NextConfig } from "next";
 const API_URL = process.env.NEXT_PUBLIC_APP_API;
 
 const nextConfig: NextConfig = {
+    cacheComponents: true,
+    experimental: {
+        instantNavigationDevToolsToggle: true,
+    },
     async rewrites() {
         // Only register the proxy rewrite when the API URL is configured.
         // Without this guard Next.js throws "destination does not start with /"
@@ -41,6 +45,14 @@ const nextConfig: NextConfig = {
             {
                 protocol: 'https',
                 hostname: 'api.pphat.top',
+            },
+            {
+                protocol: 'https',
+                hostname: 'avatar.vercel.sh',
+            },
+            {
+                protocol: 'https',
+                hostname: 'images.unsplash.com',
             }
         ],
     },

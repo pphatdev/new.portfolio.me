@@ -24,8 +24,6 @@ interface RefreshSuccess {
     refreshToken: string;
 }
 
-export const dynamic = 'force-dynamic';
-
 export async function POST(request: NextRequest): Promise<Response> {
     let body: RefreshBody;
     try {
