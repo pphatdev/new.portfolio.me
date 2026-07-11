@@ -1,33 +1,53 @@
-import { IBaseResponse, IListResponse } from ".";
-import { Tag } from "./projects"; // Assuming Tag is shared, or we can redefine it
-
-export interface Author {
-    name: string;
-    profile: string;
-    url: string;
+export interface ITag {
+    id: number;
+    tag: string;
+    description?: string;
 }
 
-export interface ArticleStats {
+export interface IAuthor {
+    name: string;
+    profile?: string;
+    url?: string;
+}
+
+export interface IArticleStats {
     views: number;
     readingMins: number;
 }
 
-export interface Article {
+export interface IArticle {
     id: string;
     title: string;
     slug: string;
     description: string;
-    tags: Tag[];
-    authors: Author[];
-    thumbnail: string;
+    tags: ITag[];
+    authors: IAuthor[];
+    thumbnail: string | null;
     published: boolean;
     ownerId: string;
     createdAt: string;
     updatedAt: string;
     content: string;
-    filePath: string;
-    stats?: ArticleStats;
+    filePath?: string;
+    stats?: IArticleStats;
 }
 
-export type IArticleListResponse = IListResponse<Article>;
-export type IArticleDetailResponse = IBaseResponse<Article>;
+export interface IPagination {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+}
+
+export interface IArticleListResponse {
+    data: IArticle[];
+    pagination: IPagination;
+}
+
+export interface IArticleDetailResponse {
+    data: IArticle;
+    navigation?: {
+        next: IArticle | null;
+        prev: IArticle | null;
+    };
+}

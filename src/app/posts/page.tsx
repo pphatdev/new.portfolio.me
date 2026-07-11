@@ -2,7 +2,7 @@
 
 import { useState, useEffect, Suspense } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { ArticleHero } from "./hero";
+import { BlogHero } from "./hero";
 import ArticleCard from "@/shared/components/ui/article-card";
 import { useArticles } from "@/shared/hooks/articles";
 import { Spinner } from "@/shared/components/ui/loading";
@@ -12,18 +12,16 @@ import Footer from "@/shared/components/layouts/footer";
 import { Button } from "@/shared/components/ui/button";
 import { ChevronLeft, ChevronRight, SearchX } from "lucide-react";
 
-function ArticlesContent() {
+function BlogsContent() {
     const router = useRouter();
     const pathname = usePathname();
     const searchParams = useSearchParams();
 
     const initialSearch = searchParams.get('q') || "";
-    const initialTag = searchParams.get('tag') || "";
     const initialPage = parseInt(searchParams.get('page') || "1", 10);
 
     const [searchQuery, setSearchQuery] = useState(initialSearch);
     const [debouncedSearch, setDebouncedSearch] = useState(initialSearch);
-    const [selectedTag, setSelectedTag] = useState(initialTag);
     const [currentPage, setCurrentPage] = useState(initialPage);
 
     // Debounce search query
@@ -47,12 +45,6 @@ function ArticlesContent() {
             params.delete('q');
         }
 
-        if (selectedTag) {
-            params.set('tag', selectedTag);
-        } else {
-            params.delete('tag');
-        }
-
         if (currentPage > 1) {
             params.set('page', currentPage.toString());
         } else {
@@ -60,13 +52,12 @@ function ArticlesContent() {
         }
 
         router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    }, [debouncedSearch, selectedTag, currentPage, pathname, router]);
+    }, [debouncedSearch, currentPage, pathname, router]);
 
     // Fetch articles
     const { articles, loading, error } = useArticles({
         search: debouncedSearch,
-        tags: selectedTag || undefined,
-        limit: 20,
+        limit: 10,
         page: currentPage
     });
 
@@ -74,50 +65,13 @@ function ArticlesContent() {
 
     return (
         <main className="w-full flex flex-col gap-7">
-            <ArticleHero
+            <BlogHero
                 searchQuery={searchQuery}
                 onSearchChange={(value) => setSearchQuery(value)}
                 onClearSearch={() => setSearchQuery("")}
             />
 
             <BlurFade delay={0.9} className="w-full max-w-5xl mx-auto max-sm:p-0 px-4 pb-16">
-                
-                {/* Extract unique tags from the current articles to show as filter chips */}
-                {!loading && articles?.data && articles.data.length > 0 && (
-                    <div className="flex flex-wrap items-center justify-center gap-2 mb-8">
-                        {selectedTag && (
-                            <Button 
-                                variant="secondary" 
-                                size="sm" 
-                                className="rounded-full bg-primary/20 hover:bg-primary/30 text-primary border border-primary/30"
-                                onClick={() => {
-                                    setSelectedTag("");
-                                    setCurrentPage(1);
-                                }}
-                            >
-                                {selectedTag} <SearchX className="ml-2 w-3 h-3" />
-                            </Button>
-                        )}
-                        {Array.from(new Set(articles.data.flatMap(a => a.tags?.map(t => t.tag) || [])))
-                            .filter(tag => tag !== selectedTag)
-                            .slice(0, 10)
-                            .map(tag => (
-                                <Button 
-                                    key={tag} 
-                                    variant="outline" 
-                                    size="sm" 
-                                    className="rounded-full text-foreground/70 hover:text-foreground"
-                                    onClick={() => {
-                                        setSelectedTag(tag);
-                                        setCurrentPage(1);
-                                    }}
-                                >
-                                    {tag}
-                                </Button>
-                            ))}
-                    </div>
-                )}
-
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 min-h-[400px]">
                     {loading && (
                         <div className="col-span-full flex justify-center items-center py-12">
@@ -174,10 +128,10 @@ function ArticlesContent() {
     );
 }
 
-export default function Articles() {
+export default function Blogs() {
     return (
         <Suspense fallback={<div className="w-full min-h-screen flex justify-center items-center"><Spinner variant="bars" /></div>}>
-            <ArticlesContent />
+            <BlogsContent />
             <Footer />
         </Suspense>
     );

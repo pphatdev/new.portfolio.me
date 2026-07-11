@@ -6,18 +6,18 @@ import { Input } from "@/shared/components/ui/input"
 import { Search, X } from "lucide-react"
 import { Button } from "@/shared/components/ui/button"
 
-interface ArticleHeroProps {
+interface BlogHeroProps {
     searchQuery: string;
     onSearchChange: (value: string) => void;
     onClearSearch: () => void;
 }
 
-export const ArticleHero = React.memo(({ searchQuery, onSearchChange, onClearSearch }: ArticleHeroProps) => {
+export const BlogHero = React.memo(({ searchQuery, onSearchChange, onClearSearch }: BlogHeroProps) => {
     const handleInputChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         onSearchChange(e.target.value);
     }, [onSearchChange]);
 
-    const pageDescription = "Explore my thoughts, tutorials, and insights on software development.";
+    const pageDescription = "Explore insights, tutorials, and articles on web development.";
 
     return (
         <div className="min-h-36 mb-10 sm:min-h-60 flex bg-linear-to-b from-primary/10 pt-14 sm:pt-24 to-background flex-col overflow-clip relative items-start justify-center">
@@ -35,7 +35,7 @@ export const ArticleHero = React.memo(({ searchQuery, onSearchChange, onClearSea
             <div className="w-full p-4 pb-0 sm:px-5 flex flex-col max-w-5xl mx-auto">
                 <BlurFade delay={0.6} inView className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 w-full">
                     <div className="space-y-2 max-w-2xl">
-                        <h1 className="text-3xl font-bold sm:text-5xl xl:text-6xl/none"> Art<span className="text-left bg-background bg-clip-text bg-no-repeat text-transparent bg-linear-to-r from-purple-500 via-pink-500 to-orange-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">icles</span> </h1>
+                        <h1 className="text-3xl font-bold sm:text-5xl xl:text-6xl/none"> Art<span className="text-left bg-background bg-clip-text bg-no-repeat text-transparent bg-linear-to-r  from-sky-500 via-teal-500 to-green-500 [text-shadow:0_0_rgba(0,0,0,0.1)]">icles</span> </h1>
                         <p className="text-sm sm:text-base text-foreground/70 leading-relaxed">
                             {pageDescription}
                         </p>
@@ -70,4 +70,4 @@ export const ArticleHero = React.memo(({ searchQuery, onSearchChange, onClearSea
     )
 });
 
-ArticleHero.displayName = 'ArticleHero';
+BlogHero.displayName = 'BlogHero';

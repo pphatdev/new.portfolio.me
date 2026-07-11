@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { IArticleListResponse } from '../interfaces/articles';
+import { IArticleListResponse, IArticleDetailResponse } from '../interfaces/articles';
 
 export interface FetchArticlesOptions {
     page?: number;
@@ -35,6 +35,10 @@ export const useArticles = (options: FetchArticlesOptions = {}) => {
                 headers: { 'Content-Type': 'application/json' },
             });
 
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+            }
+
             const data = await response.json();
             setArticles(data);
             setError(null);
@@ -51,4 +55,39 @@ export const useArticles = (options: FetchArticlesOptions = {}) => {
     }, [options.page, options.limit, options.search, options.sort, options.order, options.tags, options.authors]);
 
     return { articles, loading, error, refetch: fetchArticles };
+};
+
+export const useArticle = (slug: string) => {
+    const [articleData, setArticleData] = useState<IArticleDetailResponse | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const fetchArticle = async () => {
+        if (!slug) return;
+        try {
+            setLoading(true);
+            const response = await fetch(`/api/articles/${slug}`, {
+                headers: { 'Content-Type': 'application/json' },
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+            }
+
+            const data = await response.json();
+            setArticleData(data);
+            setError(null);
+        } catch (err) {
+            setError('Failed to fetch article');
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        fetchArticle();
+    }, [slug]);
+
+    return { articleData, loading, error, refetch: fetchArticle };
 };
