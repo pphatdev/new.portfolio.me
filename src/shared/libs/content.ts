@@ -1,0 +1,67 @@
+const BASE_URL = process.env.NEXT_PUBLIC_APP_API?.replace(/\/$/, '') ?? 'https://api.pphat.top';
+
+export interface ContentItem {
+    id: string;
+    title: string;
+    slug: string;
+    thumbnail?: string;
+    published: boolean;
+    createdAt: string;
+    updatedAt: string;
+    tags: string[];
+    visitorCount: number;
+}
+
+export async function getAllPosts(): Promise<ContentItem[]> {
+    try {
+        const res = await fetch(`${BASE_URL}/v1/api/articles?limit=100`, {
+            cache: 'no-store'
+        });
+        if (!res.ok) {
+            console.error("Failed to fetch posts", res.status);
+            return [];
+        }
+        const json = await res.json();
+        return json.data.map((post: any) => ({
+            id: post.id,
+            title: post.title,
+            slug: post.slug,
+            thumbnail: post.thumbnail,
+            published: post.published,
+            createdAt: post.createdAt,
+            updatedAt: post.updatedAt,
+            tags: post.tags?.map((t: any) => t.tag) || [],
+            visitorCount: 0 // Default to 0 since API doesn't provide it yet
+        }));
+    } catch (e) {
+        console.error("Error fetching posts:", e);
+        return [];
+    }
+}
+
+export async function getAllProjects(): Promise<ContentItem[]> {
+    try {
+        const res = await fetch(`${BASE_URL}/v1/api/projects?limit=100`, {
+            cache: 'no-store'
+        });
+        if (!res.ok) {
+            console.error("Failed to fetch projects", res.status);
+            return [];
+        }
+        const json = await res.json();
+        return json.data.map((project: any) => ({
+            id: project.id,
+            title: project.title,
+            slug: project.slug,
+            thumbnail: project.thumbnail,
+            published: project.published,
+            createdAt: project.createdAt,
+            updatedAt: project.updatedAt,
+            tags: project.tags?.map((t: any) => t.tag) || [],
+            visitorCount: 0 // Default to 0 since API doesn't provide it yet
+        }));
+    } catch (e) {
+        console.error("Error fetching projects:", e);
+        return [];
+    }
+}

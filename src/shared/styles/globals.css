@@ -42,6 +42,16 @@
   --color-destructive-accent: hsl(var(--destructive-accent));
   --color-destructive-accent-foreground: hsl(var(--destructive-accent-foreground));
 
+  /* Sidebar */
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
   --animate-background-position-spin: background-position-spin 3000ms infinite alternate;
   --animate-orbit: orbit var(--duration, 10s) linear infinite;
   --animate-meteor: meteor var(--duration, 5s) linear infinite;
@@ -153,6 +163,15 @@
     --color-3: 210 100% 63%;
     --color-4: 195 100% 63%;
     --color-5: 90 100% 63%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 163 96% 25%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 163 96% 25%;
   }
 
   .dark {
@@ -179,6 +198,15 @@
     --destructive-muted-foreground: 163 96% 25%;
     --destructive-accent: 240 5.9% 10%;
     --destructive-accent-foreground: 163 96% 25%;
+
+    --sidebar-background: 240 10% 8%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 163 96% 25%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 163 20% 15%;
+    --sidebar-accent-foreground: 163 96% 50%;
+    --sidebar-border: 163 20% 15%;
+    --sidebar-ring: 163 96% 25%;
   }
 
   body {

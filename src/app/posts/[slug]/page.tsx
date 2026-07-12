@@ -212,7 +212,7 @@ async function BlogContent({ params }: { params: Promise<{ slug: string }> }) {
                             <li key={index} className='flex items-center'>
                                 <Link
                                     rel='noopener noreferrer'
-                                    target='_blank'
+                                    // target='_blank'
                                     href={!author.url ? (author.profile ? String(author.profile).replace('.png', '') : '#') : author.url}
                                     className='flex items-center space-x-2'
                                 >

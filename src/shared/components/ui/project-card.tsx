@@ -26,7 +26,7 @@ const ProjectCard: React.FC<{ project: Project, className?: string }> = ({ proje
 
             <div className='bg-background/30 ring-1 w-fit absolute top-2 right-2 ml-auto ring-foreground/10 justify-end flex rounded-full max-sm:rounded-none p-1'>
                 <Link
-                    target="_blank"
+                    // target="_blank"
                     href={`/projects/${project.slug}`}
                     className="flex max-sm:rounded-none rounded-full p-2 hover:ring ring-foreground/20 hover:bg-background/40 text-foreground/90 hover:text-foreground transition-all items-center justify-center">
                     <ExternalLinkIcon className="size-4" />
