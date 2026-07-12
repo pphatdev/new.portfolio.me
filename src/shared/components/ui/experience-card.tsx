@@ -1,5 +1,4 @@
 import { WorkExperience } from "@/shared/hooks/skills";
-import React from "react";
 import { cn } from "@/shared/libs/utils";
 import MagneticArea from "@/shared/components/ui/magnetic-area";
 
