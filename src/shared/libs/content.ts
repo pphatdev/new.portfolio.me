@@ -33,7 +33,10 @@ export async function getAllPosts(): Promise<ContentItem[]> {
             tags: post.tags?.map((t: any) => t.tag) || [],
             visitorCount: 0 // Default to 0 since API doesn't provide it yet
         }));
-    } catch (e) {
+    } catch (e: any) {
+        if (e?.digest === 'HANGING_PROMISE_REJECTION' || e?.message?.includes('prerendering')) {
+            throw e; // Let Next.js handle its internal prerendering abort
+        }
         console.error("Error fetching posts:", e);
         return [];
     }
@@ -60,7 +63,10 @@ export async function getAllProjects(): Promise<ContentItem[]> {
             tags: project.tags?.map((t: any) => t.tag) || [],
             visitorCount: 0 // Default to 0 since API doesn't provide it yet
         }));
-    } catch (e) {
+    } catch (e: any) {
+        if (e?.digest === 'HANGING_PROMISE_REJECTION' || e?.message?.includes('prerendering')) {
+            throw e; // Let Next.js handle its internal prerendering abort
+        }
         console.error("Error fetching projects:", e);
         return [];
     }
