@@ -1,16 +1,24 @@
 "use client";
 import Link from "next/link"
-import { useState } from "react"
+import { useState, Suspense } from "react"
 import { usePathname } from "next/navigation"
 import { cn } from "@/shared/libs/utils";
 import MagneticArea from "../ui/magnetic-area";
 import { ThemeToggle } from "../ui/theme-switch";
 import { Button } from "../ui/button";
-import { MobileNav, MobileNavHeader, MobileNavMenu, MobileNavToggle, Navbar, NavbarLogo, NavBody, NavItems } from "./resizable-navbar";
 import { navbarMenu } from "@/shared/data";
 import GithubIcon from "../icons/github";
+import { MobileNav, MobileNavHeader, MobileNavMenu, MobileNavToggle, Navbar, NavbarLogo, NavBody, NavItems } from "./resizable-navbar";
 
 export const NavigationBar = ({ className }: { className?: string }) => {
+    return (
+        <Suspense fallback={null}>
+            <NavigationBarInner className={className} />
+        </Suspense>
+    )
+}
+
+const NavigationBarInner = ({ className }: { className?: string }) => {
     const pathname = usePathname();
     const navItems = navbarMenu.map((item) => ({
         ...item,
@@ -74,7 +82,6 @@ export const NavigationBar = ({ className }: { className?: string }) => {
                                 <GithubIcon className="size-7" />
                             </Link>
                         </MagneticArea>
-
                     </div>
                 </MobileNavMenu>
             </MobileNav>

@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import "../shared/styles/globals.css"
 import { ThemeProvider } from '@/shared/extension/next-theme-provider';
 import { aladin, kantumruyPro, poppins, srisakdi, openSans } from "@/shared/libs/fonts";
@@ -12,7 +13,7 @@ export const metadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return (
         <html lang="en" suppressHydrationWarning className="scroll-smooth">
             <head>
@@ -26,7 +27,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
                     disableTransitionOnChange
                 >
                     <ProgressBarProvider>
-                        <NavigationBar />
+                        <Suspense fallback={null}>
+                            <NavigationBar />
+                        </Suspense>
                         <div className="absolute inset-y-0 left-1/3 right-0 pointer-events-none" aria-hidden="true">
                             <GridPattern width={30} height={30} x={-1} y={-1} strokeDasharray={"4 2"} className={"mask-[radial-gradient(300px_circle_at_center,white,transparent)] absolute w-full "} />
                         </div>

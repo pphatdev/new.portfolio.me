@@ -116,9 +116,7 @@ export default async function ProjectDetail(props: Params) {
                         <Spinner variant="bars" />
                     </div>
                 }>
-                    {props.params.then(({ slug }) => (
-                        <ProjectContent slug={slug} />
-                    ))}
+                    <ProjectContent params={props.params} />
                 </Suspense>
             </div>
 
@@ -129,7 +127,8 @@ export default async function ProjectDetail(props: Params) {
     );
 }
 
-async function ProjectContent({ slug }: { slug: string }) {
+async function ProjectContent({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
     const project = await getProjectDetail(slug);
     if (!project || !project.data) {
         return (
