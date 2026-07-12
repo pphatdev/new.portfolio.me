@@ -2,7 +2,6 @@ import "../../../shared/styles/code-block-node.css"
 import Link from 'next/link';
 import { formatDistanceToNow } from 'date-fns';
 import { Metadata } from 'next';
-import { headers } from 'next/headers';
 
 import { NavigationBar } from '@/shared/components/layouts/navbar';
 import { GridPattern } from '@/shared/components/background/grid-pattern';
@@ -18,9 +17,9 @@ import { IArticleDetailResponse } from '@/shared/interfaces/articles';
 import { appName } from '@/shared/data';
 
 interface Params {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 }
 
 export async function generateMetadata(props: Params): Promise<Metadata> {
@@ -61,21 +60,13 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     };
 }
 
-const getBaseUrl = async () => {
-    const headerStore = await headers();
-    const host = headerStore.get("x-forwarded-host") ?? headerStore.get("host");
-    const protocol = headerStore.get("x-forwarded-proto") ?? "http";
-
-    if (!host) {
-        return process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-    }
-
-    return `${protocol}://${host}`;
+const getBaseUrl = () => {
+    return process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 };
 
 const getArticleDetail = async (slug: string): Promise<IArticleDetailResponse | null> => {
     try {
-        const baseUrl = await getBaseUrl();
+        const baseUrl = getBaseUrl();
         const endpoint = new URL(`/api/articles/${slug}`, baseUrl).toString();
         const response = await fetch(endpoint, {
             headers: { 'Content-Type': 'application/json' },
@@ -95,9 +86,27 @@ const getArticleDetail = async (slug: string): Promise<IArticleDetailResponse | 
     }
 };
 
-export default async function BlogDetail(props: Params) {
-    const params = await props.params;
-    const articleRes = await getArticleDetail(params.slug);
+import { Suspense } from 'react';
+import { Spinner } from '@/shared/components/ui/loading';
+
+export default function BlogDetail(props: Params) {
+    return (
+        <Suspense fallback={
+            <div className="w-full min-h-screen flex flex-col">
+                <NavigationBar className='fixed' />
+                <div className="flex-1 flex justify-center items-center py-32">
+                    <Spinner variant="bars" />
+                </div>
+            </div>
+        }>
+            <BlogContent params={props.params} />
+        </Suspense>
+    );
+}
+
+async function BlogContent({ params }: { params: Promise<{ slug: string }> }) {
+    const resolvedParams = await params;
+    const articleRes = await getArticleDetail(resolvedParams.slug);
 
     if (!articleRes || !articleRes.data) {
         return (

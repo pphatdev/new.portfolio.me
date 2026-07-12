@@ -18,3 +18,6 @@ export const DEFAULT_AUTH_REDIRECT = '/admin';
 
 /** Default redirect when unauthenticated */
 export const DEFAULT_LOGIN_REDIRECT = '/login';
+
+/** Contact email address */
+export const CONTACT_EMAIL = process.env.CONTACT_EMAIL || 'info.sophat@gmail.com';

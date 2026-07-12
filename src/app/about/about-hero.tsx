@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { cn } from "@/shared/libs/utils";
 import RainbowEffects from "@/shared/components/background/rainbow-effects";
+import { Cover } from "@/shared/components/ui/cover";
 
 export default function AboutHero() {
     return (
@@ -25,13 +25,8 @@ export default function AboutHero() {
                                     <span className="mr-2 font-sans [font-display:swap]">About</span>
                                 </div>
                             </div>
-                            <div className="relative group/cover inline-block bg-background/80 p-2 transition duration-200 rounded-sm">
-                                <span className="inline-block text-foreground relative z-20 group-hover/cover:text-foreground will-change-transform">Me ✨</span>
-                                <div className="pointer-events-none animate-pulse group-hover/cover:hidden group-hover/cover:opacity-100 group h-2 w-2 rounded-full bg-primary opacity-20 group-hover/cover:bg-primary absolute right-[-2px] top-[-2px]"></div>
-                                <div className="pointer-events-none animate-pulse group-hover/cover:hidden group-hover/cover:opacity-100 group h-2 w-2 rounded-full bg-primary opacity-20 group-hover/cover:bg-primary absolute bottom-[-2px] right-[-2px]"></div>
-                                <div className="pointer-events-none animate-pulse group-hover/cover:hidden group-hover/cover:opacity-100 group h-2 w-2 rounded-full bg-primary opacity-20 group-hover/cover:bg-primary absolute left-[-2px] top-[-2px]"></div>
-                                <div className="pointer-events-none animate-pulse group-hover/cover:hidden group-hover/cover:opacity-100 group h-2 w-2 rounded-full bg-primary opacity-20 group-hover/cover:bg-primary absolute bottom-[-2px] left-[-2px]"></div>
-                            </div>
+
+                            <Cover>{`Me ✨`}</Cover>
                         </div>
                     </motion.div>
 
