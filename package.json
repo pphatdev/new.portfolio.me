@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "opennextjs-cloudflare build",
+    "build": "next build",
     "pages:build": "opennextjs-cloudflare build && node -e \"const fs=require('fs'); fs.copyFileSync('.open-next/worker.js','.open-next/assets/_worker.js'); ['cloudflare','middleware','server-functions','.build'].forEach(d=>fs.existsSync('.open-next/'+d)&&fs.cpSync('.open-next/'+d,'.open-next/assets/'+d,{recursive:true}))\"",
     "pages:deploy": "npm run pages:build && wrangler pages deploy .open-next/assets",
     "preview": "npm run pages:build && wrangler pages dev .open-next/assets",
