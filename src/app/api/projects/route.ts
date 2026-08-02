@@ -21,7 +21,7 @@ export async function GET(request: NextRequest): Promise<Response> {
 }
 
 export async function POST(request: NextRequest): Promise<Response> {
-    const body = await request.json();
+    const body = (await request.json()) as Record<string, unknown>;
 
     const upstreamRes = await upstream('/v1/api/projects', {
         method: 'POST',

@@ -98,7 +98,7 @@ export function ContactForm() {
                 body: JSON.stringify(formData),
             });
 
-            const data = await response.json().catch(() => ({}));
+            const data = (await response.json().catch(() => ({}))) as { error?: string };
 
             if (!response.ok) {
                 throw new Error(data.error || 'Something went wrong. Please try again.');

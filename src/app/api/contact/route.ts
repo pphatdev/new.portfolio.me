@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
         }
 
         // Process form data
-        const formData = await request.json();
+        const formData = (await request.json()) as Record<string, any>;
         const { name, email, subject, message } = formData;
 
         // Validate the form data

@@ -71,7 +71,7 @@ async function sendWithResend(data: EmailData): Promise<boolean> {
             return false;
         }
 
-        const info = await response.json();
+        const info = (await response.json()) as any;
         console.log('Email sent via Resend:', info.id);
         return true;
     } catch (error) {

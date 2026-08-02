@@ -21,7 +21,7 @@ export async function getAllPosts(): Promise<ContentItem[]> {
             console.error("Failed to fetch posts", res.status);
             return [];
         }
-        const json = await res.json();
+        const json = (await res.json()) as any;
         return json.data.map((post: any) => ({
             id: post.id,
             title: post.title,
@@ -51,7 +51,7 @@ export async function getAllProjects(): Promise<ContentItem[]> {
             console.error("Failed to fetch projects", res.status);
             return [];
         }
-        const json = await res.json();
+        const json = (await res.json()) as any;
         return json.data.map((project: any) => ({
             id: project.id,
             title: project.title,

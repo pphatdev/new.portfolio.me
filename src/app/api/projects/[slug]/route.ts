@@ -35,7 +35,7 @@ export async function PATCH(
         return Response.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const body = await request.json();
+    const body = (await request.json()) as Record<string, unknown>;
 
     const upstreamRes = await upstream(`/v1/api/projects/${slug}`, {
         method: 'PATCH',
