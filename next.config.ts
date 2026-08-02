@@ -3,7 +3,6 @@ import type { NextConfig } from "next";
 const API_URL = process.env.NEXT_PUBLIC_APP_API;
 
 const nextConfig: NextConfig = {
-    cacheComponents: true,
     experimental: {
         instantNavigationDevToolsToggle: true,
     },

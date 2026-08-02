@@ -70,8 +70,6 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
 
 
 const getProjectDetail = async (slug: string): Promise<IProjectDetailResponse> => {
-    'use cache';
-    cacheLife('hours');
     try {
         const response = await upstream(`/v1/api/projects/${slug}`, {
             method: 'GET',
