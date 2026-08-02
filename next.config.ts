@@ -20,7 +20,27 @@ const nextConfig: NextConfig = {
             },
         ];
     },
+    async redirects() {
+        return [
+            {
+                source: '/login',
+                destination: 'https://admin.pphat.me',
+                permanent: true,
+            },
+            {
+                source: '/admin',
+                destination: 'https://admin.pphat.me',
+                permanent: true,
+            },
+        ];
+    },
     images: {
+        localPatterns: [
+            {
+                pathname: '/**',
+                search: '',
+            },
+        ],
         remotePatterns: [
             {
                 protocol: 'https',

@@ -45,14 +45,13 @@ const socialLinks = [
         icon: GithubIcon
     },
     {
-
         label: "Email",
         href: "/contact",
         icon: GithubIcon
     },
     {
         label: "Login",
-        href: "/admin",
+        href: "https://admin.pphat.me",
         icon: LockIcon
     },
 ];

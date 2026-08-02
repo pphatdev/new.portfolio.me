@@ -9,7 +9,7 @@
 import { cookies } from 'next/headers';
 import { NextRequest } from 'next/server';
 import { upstream, mirrorResponse } from '../../lib/client';
-import { AUTH_TOKEN_KEY } from '@/shared/libs/constants';
+
 
 export async function GET(
     _request: NextRequest,
@@ -29,7 +29,7 @@ export async function PATCH(
 ): Promise<Response> {
     const { slug } = await params;
     const cookieStore = await cookies();
-    const token = cookieStore.get(AUTH_TOKEN_KEY)?.value;
+    const token = cookieStore.get('auth_token')?.value;
 
     if (!token) {
         return Response.json({ error: 'Unauthorized' }, { status: 401 });
@@ -39,7 +39,9 @@ export async function PATCH(
 
     const upstreamRes = await upstream(`/v1/api/projects/${slug}`, {
         method: 'PATCH',
-        token,
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
         body,
     });
 
@@ -52,7 +54,7 @@ export async function DELETE(
 ): Promise<Response> {
     const { slug } = await params;
     const cookieStore = await cookies();
-    const token = cookieStore.get(AUTH_TOKEN_KEY)?.value;
+    const token = cookieStore.get('auth_token')?.value;
 
     if (!token) {
         return Response.json({ error: 'Unauthorized' }, { status: 401 });
@@ -60,7 +62,9 @@ export async function DELETE(
 
     const upstreamRes = await upstream(`/v1/api/projects/${slug}`, {
         method: 'DELETE',
-        token,
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
     });
 
     return mirrorResponse(upstreamRes);

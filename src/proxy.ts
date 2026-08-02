@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-import { authProxy } from './middlewares/authMiddleware';
 
 /**
  * Compose multiple proxy handlers into a single chain.
@@ -20,7 +19,7 @@ const compose =
         };
 
 /** Assembled proxy pipeline */
-const handle = compose(authProxy);
+const handle = compose();
 
 export function proxy(request: NextRequest): NextResponse {
     return handle(request);

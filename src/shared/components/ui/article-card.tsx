@@ -9,7 +9,7 @@ import React from "react";
 import { cn } from "@/shared/libs/utils";
 import { IArticle } from "@/shared/interfaces/articles";
 
-const ArticleCard = React.memo(({ article, actionChildren, className, isAdmin = false }: { article: IArticle, actionChildren?: React.ReactNode, className?: string, isAdmin?: boolean }) => {
+const ArticleCard = React.memo(({ article, actionChildren, className }: { article: IArticle, actionChildren?: React.ReactNode, className?: string }) => {
     const [imgSrc, setImgSrc] = React.useState(article.thumbnail || '/assets/placeholder/placeholder.svg');
 
     React.useEffect(() => {
@@ -47,7 +47,7 @@ const ArticleCard = React.memo(({ article, actionChildren, className, isAdmin = 
                 className="object-cover w-full aspect-video duration-300 transition-all ease-in-out max-sm:rounded-none rounded-3xl"
                 loading="lazy"
                 sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 33vw"
-                unoptimized={imgSrc.startsWith('http')}
+                unoptimized={imgSrc.startsWith('http') || imgSrc.includes('?')}
                 onError={() => setImgSrc('/assets/placeholder/placeholder.svg')}
             />
 

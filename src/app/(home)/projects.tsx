@@ -1,27 +1,40 @@
-"use client";
-
 import React from "react";
-import { motion } from 'framer-motion';
 import { Badge } from "../../shared/components/ui/badge";
 import ProjectCard from "../../shared/components/ui/project-card";
-import { useProjects } from "@/shared/hooks/projects";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Spinner } from "@/shared/components/ui/loading";
 import { Title } from "@/shared/components/ui/title";
+import { BlurFade } from "@/shared/components/background/blur-fade";
+import { upstream, parseUpstream } from "@/app/api/lib/client";
+import { IProjectListResponse } from "@/shared/interfaces/projects";
 
-const Projects: React.FC = () => {
-    const { projects, loading, error } = useProjects({ limit: 6 });
-    const total = projects?.pagination.total || 0;
+async function Projects() {
+    let projects: IProjectListResponse | null = null;
+    let error: string | null = null;
+
+    try {
+        const response = await upstream(`/v1/api/projects?limit=6`, {
+            method: 'GET',
+            next: { tags: ['projects'], revalidate: 3600 }
+        });
+        
+        const { ok, data } = await parseUpstream<IProjectListResponse>(response);
+        if (ok) {
+            projects = data;
+        } else {
+            error = (data as any).message || 'Failed to load projects';
+        }
+    } catch (err) {
+        error = 'An error occurred while fetching projects';
+        console.error(err);
+    }
+
+    const total = projects?.pagination?.total || 0;
 
     return (
         <div className="w-full max-w-6xl mx-auto max-sm:p-0 sticky top-48 px-4 pb-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
-            {loading && <div className="col-span-full flex justify-center items-center py-12">
-                <Spinner variant={'bars'} />
-            </div>}
             {error && <p className="text-center text-destructive col-span-full">Error: {error}</p>}
 
-            {/* If using the custom hook, uncomment the line below */}
             {projects?.data.map((project, index) => (
                 <React.Fragment key={index}>
                     <ProjectCard project={project} />
@@ -55,23 +68,17 @@ const Projects: React.FC = () => {
 export const SectionProjects = () => {
     return (
         <section id="projects" className="max-w-5xl flex relative flex-col items-center justify-center mx-auto">
-            <motion.section
-                variants={{
-                    hidden: { opacity: 0, y: 30 },
-                    visible: {
-                        opacity: 0.9,
-                        y: 0,
-                        transition: { duration: 0.6, delay: 0.4, staggerChildren: 0.1 }
-                    }
-                }}
-                initial="hidden"
-                animate="visible" className='max-w-5xl flex relative flex-col items-center justify-center mx-auto'>
+            <BlurFade
+                delay={0.4}
+                inView
+                className="max-w-5xl flex relative flex-col items-center justify-center mx-auto"
+            >
                 <div className="w-full mx-auto max-sm:p-3 max-sm:pb-4 z-999 gap-4 shadow-2xl shadow-primary/5 bg-background backdrop-blur-[2px]">
                     <Badge variant="outline" className='py-1.5 px-3 lg:ml-5'>Projects</Badge>
                     <Title as='h2' title={['Featured', 'Projects']} description={`Discover my portfolio of innovative web applications, from eCommerce platforms to digital libraries. Each project showcases modern development practices, user-centered design, and technical excellence in solving real-world challenges.`} />
                     <Projects />
                 </div>
-            </motion.section>
+            </BlurFade>
         </section>
     )
 }

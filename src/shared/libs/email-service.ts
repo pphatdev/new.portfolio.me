@@ -1,17 +1,16 @@
 /**
  * Email service utilities for handling contact form submissions
- * This file contains SERVER-SIDE ONLY code
+ * This file contains SERVER-SIDE ONLY code and is Cloudflare Edge compatible.
  */
 import { EmailData } from '@/shared/interfaces/email';
-import nodemailer from 'nodemailer';
 
 /**
- * Send a contact form email using Gmail
+ * Send a contact form email using Resend API
  * This function runs on the server-side only (in API routes or Server Actions)
  */
 export async function sendContactEmail(data: EmailData): Promise<boolean> {
     try {
-        return await sendWithGmail(data);
+        return await sendWithResend(data);
     } catch (error) {
         console.error('Failed to send email:', error);
         return false;
@@ -19,18 +18,15 @@ export async function sendContactEmail(data: EmailData): Promise<boolean> {
 }
 
 /**
- * Implementation using Gmail via Nodemailer
+ * Implementation using Resend API (Edge compatible)
  */
-async function sendWithGmail(data: EmailData): Promise<boolean> {
+async function sendWithResend(data: EmailData): Promise<boolean> {
     try {
-        // Create a transporter with Gmail settings
-        const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                user: process.env.GMAIL_USER,
-                pass: process.env.GMAIL_APP_PASSWORD,
-            },
-        });
+        const apiKey = process.env.RESEND_API_KEY;
+        if (!apiKey) {
+            console.error('RESEND_API_KEY is not set in environment variables');
+            return false;
+        }
 
         // Format the HTML content for better presentation
         const htmlContent = `
@@ -51,27 +47,35 @@ async function sendWithGmail(data: EmailData): Promise<boolean> {
                 <p>This email was sent from the contact form on your website.</p>
                 </div>
             </div>
-    `;
+        `;
 
-        // Format the email message
-        const mailOptions = {
-            from: {
-                name: 'Contact Form',
-                address: process.env.GMAIL_USER || 'noreply@example.com',
+        const response = await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`
             },
-            to: data.to,
-            replyTo: data.from,
-            subject: `[Contact Form] ${data.subject}`,
-            text: `Name: ${data.name}\nEmail: ${data.from}\nSubject: ${data.subject}\n\nMessage:\n${data.message}`,
-            html: htmlContent,
-        };
+            body: JSON.stringify({
+                from: process.env.RESEND_FROM_EMAIL || 'Contact Form <onboarding@resend.dev>',
+                to: [data.to],
+                reply_to: data.from,
+                subject: `[Contact Form] ${data.subject}`,
+                text: `Name: ${data.name}\nEmail: ${data.from}\nSubject: ${data.subject}\n\nMessage:\n${data.message}`,
+                html: htmlContent
+            })
+        });
 
-        // Send the email
-        const info = await transporter.sendMail(mailOptions);
-        console.log('Email sent:', info.messageId);
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Resend API error:', errorText);
+            return false;
+        }
+
+        const info = await response.json();
+        console.log('Email sent via Resend:', info.id);
         return true;
     } catch (error) {
-        console.error('Gmail error:', error);
+        console.error('Email error:', error);
         return false;
     }
 }

@@ -1,138 +1,130 @@
-'use client';
-
-import { useState, useEffect, Suspense } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { BlogHero } from "./hero";
 import ArticleCard from "@/shared/components/ui/article-card";
-import { useArticles } from "@/shared/hooks/articles";
 import { Spinner } from "@/shared/components/ui/loading";
 import { BlurFade } from "@/shared/components/background/blur-fade";
 import Footer from "@/shared/components/layouts/footer";
-
 import { Button } from "@/shared/components/ui/button";
 import { ChevronLeft, ChevronRight, SearchX } from "lucide-react";
+import Link from "next/link";
+import { upstream, parseUpstream } from "@/app/api/lib/client";
+import { IArticleListResponse } from "@/shared/interfaces/articles";
 
-function BlogsContent() {
-    const router = useRouter();
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
+type Props = {
+    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
 
-    const initialSearch = searchParams.get('q') || "";
-    const initialPage = parseInt(searchParams.get('page') || "1", 10);
+async function BlogsContent({ searchParams }: Props) {
+    const params = await searchParams;
+    const initialSearch = typeof params.q === 'string' ? params.q : "";
+    const currentPage = typeof params.page === 'string' ? parseInt(params.page, 10) : 1;
 
-    const [searchQuery, setSearchQuery] = useState(initialSearch);
-    const [debouncedSearch, setDebouncedSearch] = useState(initialSearch);
-    const [currentPage, setCurrentPage] = useState(initialPage);
+    // Fetch articles server-side
+    const query = new URLSearchParams();
+    if (currentPage > 1) query.append('page', currentPage.toString());
+    query.append('limit', '10');
+    if (initialSearch) query.append('search', initialSearch);
 
-    // Debounce search query
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            if (searchQuery !== debouncedSearch) {
-                setDebouncedSearch(searchQuery);
-                setCurrentPage(1); // Reset to page 1 when search changes
-            }
-        }, 300);
-        return () => clearTimeout(handler);
-    }, [searchQuery, debouncedSearch]);
+    let articles: IArticleListResponse | null = null;
+    let error: string | null = null;
 
-    // Update URL when search or page changes
-    useEffect(() => {
-        const params = new URLSearchParams(window.location.search);
+    try {
+        const response = await upstream(`/v1/api/articles?${query.toString()}`, {
+            method: 'GET',
+            next: { tags: ['articles', 'posts'], revalidate: 3600 }
+        });
 
-        if (debouncedSearch) {
-            params.set('q', debouncedSearch);
+        const { ok, data } = await parseUpstream<IArticleListResponse>(response);
+        if (ok) {
+            articles = data;
         } else {
-            params.delete('q');
+            error = (data as any).message || 'Failed to load articles';
         }
-
-        if (currentPage > 1) {
-            params.set('page', currentPage.toString());
-        } else {
-            params.delete('page');
-        }
-
-        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    }, [debouncedSearch, currentPage, pathname, router]);
-
-    // Fetch articles
-    const { articles, loading, error } = useArticles({
-        search: debouncedSearch,
-        limit: 10,
-        page: currentPage
-    });
+    } catch (err) {
+        error = 'An error occurred while fetching articles';
+        console.error(err);
+    }
 
     const totalPages = articles?.pagination?.totalPages || 1;
 
+    const getPageUrl = (pageNumber: number) => {
+        const q = new URLSearchParams();
+        if (initialSearch) q.set('q', initialSearch);
+        if (pageNumber > 1) q.set('page', pageNumber.toString());
+        return `?${q.toString()}`;
+    };
+
     return (
-        <main className="w-full flex flex-col gap-7">
-            <BlogHero
-                searchQuery={searchQuery}
-                onSearchChange={(value) => setSearchQuery(value)}
-                onClearSearch={() => setSearchQuery("")}
-            />
+        <div className="w-full max-w-5xl mx-auto max-sm:p-0 px-4 pb-16">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 min-h-[400px]">
+                {error && <p className="text-center text-destructive col-span-full">Error: {error}</p>}
 
-            <BlurFade delay={0.9} className="w-full max-w-5xl mx-auto max-sm:p-0 px-4 pb-16">
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7 min-h-[400px]">
-                    {loading && (
-                        <div className="col-span-full flex justify-center items-center py-12">
-                            <Spinner variant={'bars'} />
+                {articles?.data && articles.data.length === 0 && (
+                    <BlurFade delay={0.8} inView className="col-span-full flex flex-col items-center justify-center py-20 text-center border border-dashed rounded-2xl border-foreground/10 bg-background/50">
+                        <div className="w-16 h-16 rounded-full bg-secondary/50 flex items-center justify-center mb-5 ring-1 ring-foreground/10 shadow-sm">
+                            <SearchX className="w-8 h-8 text-muted-foreground" />
                         </div>
-                    )}
+                        <h3 className="text-xl font-bold tracking-tight text-foreground mb-2">No articles found</h3>
+                        <p className="text-muted-foreground max-w-sm">
+                            {initialSearch ? `We couldn't find any articles matching "${initialSearch}". Try adjusting your search query.` : "There are currently no articles to display."}
+                        </p>
+                    </BlurFade>
+                )}
 
-                    {error && <p className="text-center text-destructive col-span-full">Error: {error}</p>}
+                {articles?.data && articles.data.map((article, index) => (
+                    <BlurFade key={article.id || index} delay={0.8 + index * 0.05} inView>
+                        <ArticleCard article={article} />
+                    </BlurFade>
+                ))}
+            </div>
 
-                    {!loading && articles?.data && articles.data.length === 0 && (
-                        <div className="col-span-full flex flex-col items-center justify-center py-20 text-center border border-dashed rounded-2xl border-foreground/10 bg-background/50">
-                            <div className="w-16 h-16 rounded-full bg-secondary/50 flex items-center justify-center mb-5 ring-1 ring-foreground/10 shadow-sm">
-                                <SearchX className="w-8 h-8 text-muted-foreground" />
-                            </div>
-                            <h3 className="text-xl font-bold tracking-tight text-foreground mb-2">No articles found</h3>
-                            <p className="text-muted-foreground max-w-sm">
-                                {debouncedSearch ? `We couldn't find any articles matching "${debouncedSearch}". Try adjusting your search query.` : "There are currently no articles to display."}
-                            </p>
-                        </div>
-                    )}
-
-                    {!loading && articles?.data && articles.data.map((article, index) => (
-                        <ArticleCard key={article.id || index} article={article} />
-                    ))}
-                </div>
-
-                {!loading && totalPages > 1 && (
-                    <div className="flex items-center justify-center gap-4 mt-12">
-                        <Button
-                            variant="outline"
-                            disabled={currentPage === 1}
-                            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                            className="rounded-full w-10 h-10 p-0"
-                            aria-label="Previous page"
-                        >
+            {totalPages > 1 && (
+                <BlurFade delay={0.8 + (articles?.data?.length || 0) * 0.05} inView className="flex items-center justify-center gap-4 mt-12">
+                    {currentPage === 1 ? (
+                        <Button variant="outline" disabled className="rounded-full w-10 h-10 p-0" aria-label="Previous page">
                             <ChevronLeft className="w-5 h-5" />
                         </Button>
-                        <span className="text-sm font-medium text-foreground/80">
-                            Page {currentPage} of {totalPages}
-                        </span>
-                        <Button
-                            variant="outline"
-                            disabled={currentPage === totalPages}
-                            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                            className="rounded-full w-10 h-10 p-0"
-                            aria-label="Next page"
-                        >
+                    ) : (
+                        <Button variant="outline" asChild className="rounded-full w-10 h-10 p-0" aria-label="Previous page">
+                            <Link href={getPageUrl(Math.max(1, currentPage - 1))} scroll={false}>
+                                <ChevronLeft className="w-5 h-5" />
+                            </Link>
+                        </Button>
+                    )}
+
+                    <span className="text-sm font-medium text-foreground/80">
+                        Page {currentPage} of {totalPages}
+                    </span>
+
+                    {currentPage === totalPages ? (
+                        <Button variant="outline" disabled className="rounded-full w-10 h-10 p-0" aria-label="Next page">
                             <ChevronRight className="w-5 h-5" />
                         </Button>
-                    </div>
-                )}
-            </BlurFade>
-        </main>
+                    ) : (
+                        <Button variant="outline" asChild className="rounded-full w-10 h-10 p-0" aria-label="Next page">
+                            <Link href={getPageUrl(Math.min(totalPages, currentPage + 1))} scroll={false}>
+                                <ChevronRight className="w-5 h-5" />
+                            </Link>
+                        </Button>
+                    )}
+                </BlurFade>
+            )}
+        </div>
     );
 }
 
-export default function Blogs() {
+
+
+export default function Blogs({ searchParams }: Props) {
     return (
-        <Suspense fallback={<div className="w-full min-h-screen flex justify-center items-center"><Spinner variant="bars" /></div>}>
-            <BlogsContent />
+        <main className="w-full flex flex-col gap-7">
+            <Suspense fallback={<div className="min-h-36 sm:min-h-60" />}>
+                <BlogHero />
+            </Suspense>
+            <Suspense fallback={<div className="w-full min-h-[400px] flex justify-center items-center"><Spinner variant="bars" /></div>}>
+                <BlogsContent searchParams={searchParams} />
+            </Suspense>
             <Footer />
-        </Suspense>
+        </main>
     );
 }

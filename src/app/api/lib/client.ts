@@ -7,12 +7,10 @@
  *   const res = await upstream('/v1/api/auth/email/login', { method: 'POST', body })
  */
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_API?.replace(/\/$/, '') ?? 'https://api.pphat.top';
+const BASE_URL = process.env.NEXT_PUBLIC_APP_API?.replace(/\/$/, '') ?? 'https://blog-api.pphatdev.workers.dev';
 
 export interface UpstreamOptions extends Omit<RequestInit, 'body'> {
     body?: object | null;
-    /** Forward an Authorization header to the upstream API */
-    token?: string;
 }
 
 /**
@@ -21,18 +19,19 @@ export interface UpstreamOptions extends Omit<RequestInit, 'body'> {
  */
 export async function upstream(
     path: string,
-    { body, token, headers: extraHeaders, ...rest }: UpstreamOptions = {}
+    { body, headers: extraHeaders, ...rest }: UpstreamOptions = {}
 ): Promise<Response> {
     const url = `${BASE_URL}${path}`;
 
+    if (!process.env.PPHAT_API_KEY) {
+        console.warn('⚠️ PPHAT_API_KEY is missing from environment variables! Did you forget to restart your dev server?');
+    }
+
     const headers: Record<string, string> = {
         'Content-Type': 'application/json',
+        'x-api-key': process.env.PPHAT_API_KEY ?? '',
         ...(extraHeaders as Record<string, string>),
     };
-
-    if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
-    }
 
     return fetch(url, {
         ...rest,

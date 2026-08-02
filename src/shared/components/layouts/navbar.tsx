@@ -20,10 +20,8 @@ export const NavigationBar = ({ className }: { className?: string }) => {
 
 const NavigationBarInner = ({ className }: { className?: string }) => {
     const pathname = usePathname();
-    
-    if (pathname.startsWith('/admin') || pathname.startsWith('/login')) {
-        return null;
-    }
+
+
 
     const navItems = navbarMenu.map((item) => ({
         ...item,

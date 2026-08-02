@@ -1,4 +1,6 @@
-import React from "react"
+'use client';
+import React, { useState, useEffect } from "react"
+import { useRouter, usePathname, useSearchParams } from "next/navigation"
 import { GridPattern } from "@/shared/components/background/grid-pattern"
 import { BlurFade } from "@/shared/components/background/blur-fade"
 import RainbowEffects from "@/shared/components/background/rainbow-effects"
@@ -6,16 +8,59 @@ import { Input } from "@/shared/components/ui/input"
 import { Search, X } from "lucide-react"
 import { Button } from "@/shared/components/ui/button"
 
-interface ProjectHeroProps {
-    searchQuery: string;
-    onSearchChange: (value: string) => void;
-    onClearSearch: () => void;
-}
+export const ProjectHero = React.memo(() => {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+    const initialSearch = searchParams?.get('q') || "";
 
-export const ProjectHero = React.memo(({ searchQuery, onSearchChange, onClearSearch }: ProjectHeroProps) => {
+    const [searchQuery, setSearchQuery] = useState(initialSearch);
+    const [debouncedSearch, setDebouncedSearch] = useState(initialSearch);
+
+    // Debounce search query
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            if (searchQuery !== debouncedSearch) {
+                setDebouncedSearch(searchQuery);
+            }
+        }, 300);
+        return () => clearTimeout(handler);
+    }, [searchQuery, debouncedSearch]);
+
+    const [isMounted, setIsMounted] = useState(false);
+
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
+
+    // Update URL when debouncedSearch changes
+    useEffect(() => {
+        if (!isMounted) return;
+
+        const params = new URLSearchParams(window.location.search);
+        const currentQ = params.get('q') || "";
+        
+        if (debouncedSearch === currentQ) return; // Prevent infinite loops
+
+        if (debouncedSearch) {
+            params.set('q', debouncedSearch);
+        } else {
+            params.delete('q');
+        }
+        
+        // Reset to page 1 on new search
+        params.delete('page');
+
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    }, [debouncedSearch, pathname, router, isMounted]);
+
     const handleInputChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        onSearchChange(e.target.value);
-    }, [onSearchChange]);
+        setSearchQuery(e.target.value);
+    }, []);
+
+    const onClearSearch = React.useCallback(() => {
+        setSearchQuery("");
+    }, []);
 
     const pageDescription = "Explore my portfolio of web development projects and applications.";
 
