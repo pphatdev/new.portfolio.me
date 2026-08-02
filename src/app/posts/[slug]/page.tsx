@@ -60,16 +60,12 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     };
 }
 
-const getBaseUrl = () => {
-    return process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-};
+import { upstream } from '@/app/api/lib/client';
 
 const getArticleDetail = async (slug: string): Promise<IArticleDetailResponse | null> => {
     try {
-        const baseUrl = getBaseUrl();
-        const endpoint = new URL(`/api/articles/${slug}`, baseUrl).toString();
-        const response = await fetch(endpoint, {
-            headers: { 'Content-Type': 'application/json' },
+        const response = await upstream(`/v1/api/articles/${slug}`, {
+            method: 'GET',
         });
 
         if (!response.ok) {
