@@ -2,7 +2,7 @@ import { NextRequest } from 'next/server';
 import { upstream, mirrorResponse } from '../lib/client';
 
 export async function GET(request: NextRequest): Promise<Response> {
-    const { searchParams } = new URL(request.url);
+    const searchParams = new URLSearchParams(request.nextUrl.searchParams.toString());
     if (!searchParams.has('status')) {
         searchParams.set('status', 'public');
     }
