@@ -21,12 +21,12 @@ const compose =
 /** Assembled proxy pipeline */
 const handle = compose();
 
-export function proxy(request: NextRequest): NextResponse {
+export function middleware(request: NextRequest): NextResponse {
     return handle(request);
 }
 
 /**
- * Limit the proxy to paths that need it.
+ * Limit the middleware to paths that need it.
  * Excludes Next.js internals, static assets, metadata files, and public files.
  */
 export const config = {

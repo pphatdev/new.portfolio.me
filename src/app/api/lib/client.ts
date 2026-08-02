@@ -11,6 +11,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_APP_API?.replace(/\/$/, '') ?? 'https:/
 
 export interface UpstreamOptions extends Omit<RequestInit, 'body'> {
     body?: object | null;
+    next?: { revalidate?: number | false; tags?: string[] };
 }
 
 /**
