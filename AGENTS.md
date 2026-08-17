@@ -16,11 +16,11 @@ Path alias: `@/*` → `./src/*`.
 
 ## Architecture
 
-### Proxy (renamed from Middleware in Next.js 16)
+### Middleware (Cloudflare-pinned)
 
-The framework convention file is `src/proxy.ts`, exporting `proxy()` and `config.matcher`. **Do not create `middleware.ts`.** See `node_modules/next/dist/docs/01-app/01-getting-started/16-proxy.md` before changing this layer.
+Next.js 16 renamed Middleware → Proxy (`src/proxy.ts`), but `@opennextjs/cloudflare` does **not** support Node-runtime Proxy files, and Next 16's SWC forbids setting `runtime` on `proxy.ts`. Until OpenNext ships adapters-api support (see opennextjs-cloudflare#1213), this project must stay on **`src/middleware.ts`** with `export const runtime = 'experimental-edge'` and an exported `middleware()` function. Do not rename to `proxy.ts`.
 
-`src/proxy.ts` chains handlers via `compose(...)` from `src/middlewares/` (a user-named folder, not the framework concept). Handlers return `NextResponse` to short-circuit or `null` to fall through. Currently only `authProxy` is wired in, and it inspects cookie presence only — no token validation.
+`src/middleware.ts` chains handlers via `compose(...)` from `src/middlewares/` (a user-named folder, not the framework concept). Handlers return `NextResponse` to short-circuit or `null` to fall through.
 
 ### Authentication
 

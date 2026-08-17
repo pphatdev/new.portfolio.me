@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 
 const API_URL = process.env.NEXT_PUBLIC_APP_API;
 
@@ -79,3 +80,5 @@ const nextConfig: NextConfig = {
 
 
 export default nextConfig;
+
+initOpenNextCloudflareForDev();
