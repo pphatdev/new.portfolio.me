@@ -24,13 +24,13 @@ export async function upstream(
 ): Promise<Response> {
     const url = `${BASE_URL}${path}`;
 
-    if (!process.env.PPHAT_API_KEY) {
-        console.warn('⚠️ PPHAT_API_KEY is missing from environment variables! Did you forget to restart your dev server?');
+    if (!process.env.NEXT_PPHAT_API_KEY) {
+        console.warn('⚠️ NEXT_PPHAT_API_KEY is missing from environment variables! Did you forget to restart your dev server?');
     }
 
     const headers: Record<string, string> = {
         'Content-Type': 'application/json',
-        'x-api-key': process.env.PPHAT_API_KEY ?? '',
+        'x-api-key': process.env.NEXT_PPHAT_API_KEY ?? '',
         ...(extraHeaders as Record<string, string>),
     };
 

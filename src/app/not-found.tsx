@@ -7,16 +7,14 @@ import { ArrowRight } from 'lucide-react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL;
-
 export const metadata: Metadata = {
     title: `404 - Page Not Found`,
     description: 'The page you were looking for does not exist or has been moved.',
     openGraph: {
         title: `404 - Page Not Found`,
         description: 'The page you were looking for does not exist or has been moved.',
-        url: APP_URL,
-        images: [{ url: APP_URL + "/assets/avatars/hero.webp", }],
+        url: '/',
+        images: [{ url: '/assets/avatars/hero.webp' }],
     }
 };
 

@@ -10,7 +10,7 @@ export const ExperienceCard = (
         <article className="relative group">
             <div className="absolute max-sm:border-b -inset-y-2.5 transition-colors -inset-x-4 md:-inset-y-4 md:-inset-x-4 sm:rounded-2xl group-hover:bg-foreground/5"></div>
 
-            <svg viewBox="0 0 9 9" stroke="currentColor" className="hidden absolute right-full mr-6 top-2 text-primary/20 md:mr-12 w-[calc(0.5rem+1px)] h-[calc(0.5rem+1px)] overflow-visible sm:block">
+            <svg viewBox="0 0 9 9" stroke="currentColor" className="hidden absolute right-full mr-6 top-2 text-primary/20 md:mr-12 w-2.25 h-2.25 overflow-visible sm:block">
                 <circle cx="4.5" cy="4.5" r="4.5" strokeWidth="1" className="fill-primary"></circle>
             </svg>
 
@@ -62,7 +62,7 @@ export const ExperienceCard = (
                 </div>
             </div>
 
-            <dl className="absolute max-sm:left-0 pointer-events-none -top-1 lg:-left-[calc(14.5rem)] lg:mr-[calc(6.5rem+1px)]">
+            <dl className="absolute max-sm:left-0 pointer-events-none -top-1 lg:-left-58 lg:mr-26.25">
                 <dt className="sr-only">Date</dt>
                 <dd className="max-sm:text-[8px] max-sm:rounded-none text-xs max-sm:leading-4 leading-6 max-sm:border px-1.5 rounded-t-lg font-medium sm:text-sm whitespace-nowrap text-foreground/50">
                     {date}

@@ -20,6 +20,7 @@ import { IProjectDetailResponse } from '@/shared/interfaces/projects';
 import { appName } from '@/shared/data';
 import GithubIcon from "@/shared/components/icons/github";
 import { Spinner } from '@/shared/components/ui/loading';
+import { getOrigin } from '@/shared/seo/origin';
 
 interface Params {
     params: Promise<{
@@ -42,21 +43,24 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
         };
     }
 
+    const origin = await getOrigin();
+
     return {
         title: `${data.title}`,
         description: data.description,
+        alternates: { canonical: `/projects/${data.slug}` },
         authors: data.contributors?.map((author) => ({
             name: author.name,
             url: author.url,
         })) || [{
             name: appName,
-            url: process.env.NEXT_PUBLIC_APP_URL,
+            url: origin,
         }],
         openGraph: {
             title: `${data.title}`,
             description: data.description,
             type: 'website',
-            url: `${process.env.NEXT_PUBLIC_APP_URL}/projects/${data.slug}`,
+            url: `/projects/${data.slug}`,
             images: data.thumbnail ? [{ url: data.thumbnail.toString() }] : undefined,
         },
         twitter: {

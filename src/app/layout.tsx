@@ -8,10 +8,11 @@ import DefaultHead from '@/shared/seo/head';
 import { NavigationBar } from "@/shared/components/layouts/navbar";
 import { GridPattern } from "@/shared/components/background/grid-pattern";
 import { Metadata } from "next";
+import { getOrigin } from "@/shared/seo/origin";
 
-export const metadata: Metadata = {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'),
-};
+export async function generateMetadata(): Promise<Metadata> {
+    return { metadataBase: new URL(await getOrigin()) };
+}
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     return (

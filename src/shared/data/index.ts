@@ -1,6 +1,6 @@
-import * as faqJson from './faq.json';
-import * as contactJson from './contact.json';
-import * as navJson from './menu.json';
+import faqJson from './faq.json';
+import contactJson from './contact.json';
+import navJson from './menu.json';
 
 export const appName = "LEAT Sophat";
 export const alterName = "pphat";

@@ -5,7 +5,7 @@ interface __BaseEnv_CloudflareEnv {
 	ASSETS: Fetcher;
 	NEXT_PUBLIC_APP_URL: string;
 	NEXT_PUBLIC_APP_API: string;
-	PPHAT_API_KEY: string;
+	NEXT_PPHAT_API_KEY: string;
 }
 declare namespace Cloudflare {
 	interface GlobalProps {
@@ -18,7 +18,7 @@ type StringifyValues<EnvType extends Record<string, unknown>> = {
 	[Binding in keyof EnvType]: EnvType[Binding] extends string ? EnvType[Binding] : string;
 };
 declare namespace NodeJS {
-	interface ProcessEnv extends StringifyValues<Pick<Cloudflare.Env, "NEXT_PUBLIC_APP_URL" | "NEXT_PUBLIC_APP_API" | "PPHAT_API_KEY">> {}
+	interface ProcessEnv extends StringifyValues<Pick<Cloudflare.Env, "NEXT_PUBLIC_APP_URL" | "NEXT_PUBLIC_APP_API" | "NEXT_PPHAT_API_KEY">> {}
 }
 
 // Begin runtime types

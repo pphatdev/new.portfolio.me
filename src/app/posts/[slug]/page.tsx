@@ -15,6 +15,7 @@ import { ScrollToTopButton } from '@/shared/components/ui/scroll-to-top';
 import Footer from '@/shared/components/layouts/footer';
 import { IArticleDetailResponse } from '@/shared/interfaces/articles';
 import { appName } from '@/shared/data';
+import { getOrigin } from '@/shared/seo/origin';
 
 interface Params {
     params: Promise<{
@@ -34,21 +35,24 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
         };
     }
 
+    const origin = await getOrigin();
+
     return {
         title: `${data.title}`,
         description: data.description,
+        alternates: { canonical: `/posts/${data.slug}` },
         authors: data.authors?.map((author) => ({
             name: author.name,
             url: author.url,
         })) || [{
             name: appName,
-            url: process.env.NEXT_PUBLIC_APP_URL,
+            url: origin,
         }],
         openGraph: {
             title: `${data.title}`,
             description: data.description,
             type: 'article',
-            url: `${process.env.NEXT_PUBLIC_APP_URL}/posts/${data.slug}`,
+            url: `/posts/${data.slug}`,
             images: data.thumbnail ? [{ url: data.thumbnail.toString() }] : undefined,
         },
         twitter: {

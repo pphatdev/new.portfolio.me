@@ -7,7 +7,8 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "pages:build": "opennextjs-cloudflare build && node scripts/pages-postbuild.mjs",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "pages:build": "node scripts/generate-sitemap.mjs && opennextjs-cloudflare build && node scripts/pages-postbuild.mjs",
     "pages:deploy": "npm run pages:build && wrangler pages deploy .open-next/assets",
     "preview": "npm run pages:build && wrangler pages dev .open-next/assets",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
