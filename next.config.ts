@@ -4,9 +4,6 @@ import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
 const API_URL = process.env.NEXT_PUBLIC_APP_API;
 
 const nextConfig: NextConfig = {
-    experimental: {
-        instantNavigationDevToolsToggle: true,
-    },
     async rewrites() {
         // Only register the proxy rewrite when the API URL is configured.
         // Without this guard Next.js throws "destination does not start with /"
