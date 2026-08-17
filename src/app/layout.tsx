@@ -17,6 +17,17 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     return (
         <html lang="en" suppressHydrationWarning className="scroll-smooth">
             <head>
+                {/*
+                    Turbopack minifies next-themes' blocking inline script with esbuild
+                    keepNames, which emits __name(fn, "fn") calls but drops the helper
+                    definition. Shim it here so the theme-init script doesn't throw
+                    "__name is not defined" before hydration.
+                */}
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: 'var __name=function(t,n){try{Object.defineProperty(t,"name",{value:n,configurable:true})}catch(e){}return t};var __name2=__name;',
+                    }}
+                />
                 <DefaultHead />
             </head>
             <body className={cn(poppins.variable, kantumruyPro.variable, aladin.variable, srisakdi.variable, openSans.variable, `antialiased p-0 m-0 font-sans bg-body `)} style={{ overflowX: 'hidden' }}>
